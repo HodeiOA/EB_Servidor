@@ -30,7 +30,7 @@ public class clsVuelo
 	
 	public clsVuelo(String codVuelo, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino, Date fechaIda, Date fechaVuelta, int numAsientos, int numAsientosLibres, double precio, ArrayList<Reserva> listaReservas) 
 	{
-		this.codVuelo = numVuelo;
+		this.codVuelo = codVuelo;
 		this.aeropuertoOrigen = aeropuertoOrigen;
 		this.aeropuertoDestino = aeropuertoDestino;
 		this.fechaIda = fechaIda;
@@ -41,11 +41,11 @@ public class clsVuelo
 		this.listaReservas = listaReservas;
 	}
 
-	public String getNumVuelo() {
+	public String getCodVuelo() {
 		return codVuelo;
 	}
 
-	public void seCodVuelo(String numVuelo) {
+	public void seCodVuelo(String codVuelo) {
 		this.codVuelo = codVuelo;
 	}
 
@@ -117,7 +117,7 @@ public class clsVuelo
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + numVuelo;
+		result = prime * result + ((codVuelo == null) ? 0 : codVuelo.hashCode());
 		return result;
 	}
 
@@ -130,11 +130,12 @@ public class clsVuelo
 		if (getClass() != obj.getClass())
 			return false;
 		clsVuelo other = (clsVuelo) obj;
-		if (numVuelo != other.numVuelo)
+		if (codVuelo == null) {
+			if (other.codVuelo != null)
+				return false;
+		} else if (!codVuelo.equals(other.codVuelo))
 			return false;
 		return true;
-	}	
-	
-	
+	}
 	
 }
