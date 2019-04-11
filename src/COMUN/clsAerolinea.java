@@ -45,9 +45,13 @@ public class clsAerolinea
 
 
 
-	double calcularComisionDebida(ArrayList<Reserva> historicoReservas )
+	double calcularComisionDebida(ArrayList<clsReserva> historicoReservas )
 	{
+		double retorno = 0;
 		
+		//hacer metodo
+		
+		return retorno;
 	}
 
 	@Override

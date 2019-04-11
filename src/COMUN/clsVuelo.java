@@ -1,19 +1,20 @@
 package COMUN;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class clsVuelo
 {
 	private String codVuelo;
-	private Aeropuerto aeropuertoOrigen;
-	private Aeropuerto aeropuertoDestino;
+	private clsAeropuerto aeropuertoOrigen;
+	private clsAeropuerto aeropuertoDestino;
 	private Date fechaIda;
 	private Date fechaVuelta;
 	private int numAsientos;
 	private int numAsientosLibres;
 	private double precio;
 	
-	private ArrayList<Reserva> listaReservas;
+	private ArrayList<clsReserva> listaReservas;
 
 	public clsVuelo() 
 	{
@@ -28,7 +29,7 @@ public class clsVuelo
 		this.listaReservas = null;
 	}
 	
-	public clsVuelo(String codVuelo, Aeropuerto aeropuertoOrigen, Aeropuerto aeropuertoDestino, Date fechaIda, Date fechaVuelta, int numAsientos, int numAsientosLibres, double precio, ArrayList<Reserva> listaReservas) 
+	public clsVuelo(String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, Date fechaIda, Date fechaVuelta, int numAsientos, int numAsientosLibres, double precio, ArrayList<clsReserva> listaReservas) 
 	{
 		this.codVuelo = codVuelo;
 		this.aeropuertoOrigen = aeropuertoOrigen;
@@ -49,19 +50,19 @@ public class clsVuelo
 		this.codVuelo = codVuelo;
 	}
 
-	public Aeropuerto getAeropuertoOrigen() {
+	public clsAeropuerto getAeropuertoOrigen() {
 		return aeropuertoOrigen;
 	}
 
-	public void setAeropuertoOrigen(Aeropuerto aeropuertoOrigen) {
+	public void setAeropuertoOrigen(clsAeropuerto aeropuertoOrigen) {
 		this.aeropuertoOrigen = aeropuertoOrigen;
 	}
 
-	public Aeropuerto getAeropuertoDestino() {
+	public clsAeropuerto getAeropuertoDestino() {
 		return aeropuertoDestino;
 	}
 
-	public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
+	public void setAeropuertoDestino(clsAeropuerto aeropuertoDestino) {
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
 
@@ -105,11 +106,11 @@ public class clsVuelo
 		this.precio = precio;
 	}
 
-	public ArrayList<Reserva> getListaReservas() {
+	public ArrayList<clsReserva> getListaReservas() {
 		return listaReservas;
 	}
 
-	public void setListaReservas(ArrayList<Reserva> listaReservas) {
+	public void setListaReservas(ArrayList<clsReserva> listaReservas) {
 		this.listaReservas = listaReservas;
 	}
 
