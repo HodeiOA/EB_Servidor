@@ -18,7 +18,7 @@ public class clsReserva implements Serializable
 	
 	public clsReserva(int numAsiento, clsVuelo vuelo, clsUsuario usuario, String nombreViajero, double importe)
 	{
-		this.codReserva = vuelo.getNumVuelo() & numAsiento;
+		this.codReserva = vuelo.getCodVuelo() + numAsiento;
 		this.numAsiento = numAsiento;
 		this.vuelo = vuelo;
 		this.usuario = usuario;
