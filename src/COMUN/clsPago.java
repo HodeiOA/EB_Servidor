@@ -1,17 +1,17 @@
 package COMUN;
 
-public class Pago 
+public class clsPago 
 {
 	private String email;
-	private Reserva reserva;
-	private Usuario usuario;
+	private clsReserva reserva;
+	private clsUsuario usuario;
 	
-	public Pago()
+	public clsPago()
 	{
 		
 	}
 	
-	public Pago(String email, Reserva reserva,Usuario usuario)
+	public clsPago(String email, clsReserva reserva,clsUsuario usuario)
 	{
 		this.email = email;
 		this.reserva = reserva;
@@ -27,19 +27,19 @@ public class Pago
 		this.email = email;
 	}
 
-	public Reserva getReserva() {
+	public clsReserva getReserva() {
 		return reserva;
 	}
 
-	public void setReserva(Reserva reserva) {
+	public void setReserva(clsReserva reserva) {
 		this.reserva = reserva;
 	}
 
-	public Usuario getUsuario() {
+	public clsUsuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(clsUsuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -61,7 +61,7 @@ public class Pago
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pago other = (Pago) obj;
+		clsPago other = (clsPago) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;

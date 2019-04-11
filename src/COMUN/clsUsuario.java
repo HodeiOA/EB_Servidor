@@ -1,13 +1,13 @@
 package COMUN;
 
-public class Usuario 
+public class clsUsuario 
 {
 	private String email;
 	private ISistAutorizacion sistemaAutorizacion;
 	private IPasarela pasarelaDePago;
-	private Aeropuerto aeroPreder;
+	private clsAeropuerto aeroPreder;
 	
-	public Usuario()
+	public clsUsuario()
 	{	
 		this.email = null;
 		this.sistemaAutorizacion = null;
@@ -15,7 +15,7 @@ public class Usuario
 		this.aeroPreder = null;	
 	}
 	
-	public Usuario(String email,ISistAutorizacion sistemaAutorizacion, IPasarela pasarelaDePago, Aeropuerto aeroPreder)
+	public clsUsuario(String email,ISistAutorizacion sistemaAutorizacion, IPasarela pasarelaDePago, clsAeropuerto aeroPreder)
 	{
 		this.email = email;
 		this.sistemaAutorizacion = sistemaAutorizacion;
@@ -78,7 +78,7 @@ public class Usuario
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		clsUsuario other = (clsUsuario) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
