@@ -11,6 +11,7 @@ public class clsUsuario
 	private ISistAutorizacion sistemaAutorizacion;
 	private IPasarela pasarelaDePago;
 	private clsAeropuerto aeroPreder;
+	//Hash de reservas?
 	
 	public clsUsuario()
 	{	
