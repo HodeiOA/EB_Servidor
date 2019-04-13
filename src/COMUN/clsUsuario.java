@@ -1,7 +1,12 @@
 package COMUN;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class clsUsuario 
 {
+	 @PrimaryKey
 	private String email;
 	private ISistAutorizacion sistemaAutorizacion;
 	private IPasarela pasarelaDePago;

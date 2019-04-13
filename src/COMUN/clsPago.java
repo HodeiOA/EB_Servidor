@@ -1,8 +1,13 @@
 package COMUN;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class clsPago 
 {
-	private String email;
+	 @PrimaryKey
+	private String codPago;
 	private clsReserva reserva;
 	private clsUsuario usuario;
 	
@@ -13,18 +18,18 @@ public class clsPago
 	
 	public clsPago(String email, clsReserva reserva,clsUsuario usuario)
 	{
-		this.email = email;
+		this.codPago = email;
 		this.reserva = reserva;
 		this.usuario = usuario;
 	}
 
 	//Getters y Setters
 	public String getEmail() {
-		return email;
+		return codPago;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.codPago = email;
 	}
 
 	public clsReserva getReserva() {
@@ -48,7 +53,7 @@ public class clsPago
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((codPago == null) ? 0 : codPago.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
@@ -62,10 +67,10 @@ public class clsPago
 		if (getClass() != obj.getClass())
 			return false;
 		clsPago other = (clsPago) obj;
-		if (email == null) {
-			if (other.email != null)
+		if (codPago == null) {
+			if (other.codPago != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!codPago.equals(other.codPago))
 			return false;
 		if (usuario == null) {
 			if (other.usuario != null)
