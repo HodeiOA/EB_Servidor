@@ -13,7 +13,9 @@ public class clsPago
 	
 	public clsPago()
 	{
-		
+		this.codPago = null;
+		this.reserva = null;
+		this.usuario = null;		
 	}
 	
 	public clsPago(String email, clsReserva reserva,clsUsuario usuario)

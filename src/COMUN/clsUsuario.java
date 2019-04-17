@@ -1,6 +1,12 @@
 package COMUN;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
@@ -11,38 +17,30 @@ public class clsUsuario
 	private ISistAutorizacion sistemaAutorizacion;
 	private IPasarela pasarelaDePago;
 	private clsAeropuerto aeroPreder;
-	//Hash de reservas?
+	//Usuario es el atributo de tipo clsUsuario en Pago
+	@Join
+	@Persistent(mappedBy="usuario", dependentElement="true")
+	private HashSet <clsPago> Listpagos;
 	
 	public clsUsuario()
 	{	
 		this.email = null;
+		this.Listpagos = new HashSet<clsPago>();
 		this.sistemaAutorizacion = null;
 		this.pasarelaDePago = null;
 		this.aeroPreder = null;	
 	}
 	
-	public clsUsuario(String email,ISistAutorizacion sistemaAutorizacion, IPasarela pasarelaDePago, clsAeropuerto aeroPreder)
+	public clsUsuario(String email,ISistAutorizacion sistemaAutorizacion, IPasarela pasarelaDePago, clsAeropuerto aeroPreder,  HashSet <clsPago> Listpagos)
 	{
 		this.email = email;
+		this.Listpagos =Listpagos;
 		this.sistemaAutorizacion = sistemaAutorizacion;
 		this.pasarelaDePago = pasarelaDePago;
 		this.aeroPreder = aeroPreder;
 	}
 
 	//Getters y setters
-	
-	
-	//HashCode e equals
-
-	@Override
-	public int hashCode() 
-	{
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		return result;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -67,12 +65,31 @@ public class clsUsuario
 		this.pasarelaDePago = pasarelaDePago;
 	}
 
-	public Aeropuerto getAeroPreder() {
+	public clsAeropuerto getAeroPreder() {
 		return aeroPreder;
 	}
 
-	public void setAeroPreder(Aeropuerto aeroPreder) {
+	public void setAeroPreder(clsAeropuerto aeroPreder) {
 		this.aeroPreder = aeroPreder;
+	}
+	
+	public HashSet<clsPago> getListpagos() {
+		return Listpagos;
+	}
+
+	public void setListpagos(HashSet<clsPago> listpagos) {
+		Listpagos = listpagos;
+	}
+	
+	
+	//HashCode e equals
+	@Override
+	public int hashCode() 
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		return result;
 	}
 
 	@Override
