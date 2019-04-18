@@ -14,6 +14,7 @@ public class clsUsuario
 {
 	 @PrimaryKey
 	private String email;
+	private String numTarjetaCredito;
 	private ISistAutorizacion sistemaAutorizacion;
 	private IPasarela pasarelaDePago;
 	private clsAeropuerto aeroPreder;
@@ -29,20 +30,31 @@ public class clsUsuario
 		this.sistemaAutorizacion = null;
 		this.pasarelaDePago = null;
 		this.aeroPreder = null;	
+		this.numTarjetaCredito = null;
 	}
 	
-	public clsUsuario(String email,ISistAutorizacion sistemaAutorizacion, IPasarela pasarelaDePago, clsAeropuerto aeroPreder,  HashSet <clsPago> Listpagos)
+	public clsUsuario(String email,ISistAutorizacion sistemaAutorizacion, IPasarela pasarelaDePago, clsAeropuerto aeroPreder,  HashSet <clsPago> Listpagos, String numTarjetaCredito)
 	{
 		this.email = email;
 		this.Listpagos =Listpagos;
 		this.sistemaAutorizacion = sistemaAutorizacion;
 		this.pasarelaDePago = pasarelaDePago;
 		this.aeroPreder = aeroPreder;
+		this.numTarjetaCredito = numTarjetaCredito;
 	}
 
 	//Getters y setters
+	
 	public String getEmail() {
 		return email;
+	}
+
+	public String getNumTarjetaCredito() {
+		return numTarjetaCredito;
+	}
+
+	public void setNumTarjetaCredito(String numTarjetaCredito) {
+		this.numTarjetaCredito = numTarjetaCredito;
 	}
 
 	public void setEmail(String email) {
