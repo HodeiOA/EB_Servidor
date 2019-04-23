@@ -2,8 +2,13 @@ package COMUN;
 
 import java.io.Serializable;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class clsAeropuerto implements Serializable
 {
+	@PrimaryKey
 	private String codAeropuerto;
 	private String ciudad;
 	private String pais;

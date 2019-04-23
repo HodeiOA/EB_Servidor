@@ -2,10 +2,17 @@ package COMUN;
 
 import java.io.Serializable;
 
+import javax.jdo.annotations.ForeignKey;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class clsReserva implements Serializable
 {
+	@PrimaryKey
 	private String codReserva;
 	private int numAsiento;
+	@ForeignKey
 	private clsVuelo vuelo;
 	private clsUsuario usuario;
 	private String nombreViajero;
