@@ -8,8 +8,7 @@ public class clsVuelo
 	private String codVuelo;
 	private clsAeropuerto aeropuertoOrigen;
 	private clsAeropuerto aeropuertoDestino;
-	private Date fechaIda;
-	private Date fechaVuelta;
+	private Date fecha;
 	private int numAsientos;
 	private int numAsientosLibres;
 	private double precio;
@@ -21,21 +20,19 @@ public class clsVuelo
 		this.codVuelo = null;
 		this.aeropuertoOrigen = null;
 		this.aeropuertoDestino = null;
-		this.fechaIda = null;
-		this.fechaVuelta = null;
+		this.fecha = null;
 		this.numAsientos = 0;
 		this.numAsientosLibres = 0;
 		this.precio = 0;
 		this.listaReservas = null;
 	}
 	
-	public clsVuelo(String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, Date fechaIda, Date fechaVuelta, int numAsientos, int numAsientosLibres, double precio, ArrayList<clsReserva> listaReservas) 
+	public clsVuelo(String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, Date fecha, int numAsientos, int numAsientosLibres, double precio, ArrayList<clsReserva> listaReservas) 
 	{
 		this.codVuelo = codVuelo;
 		this.aeropuertoOrigen = aeropuertoOrigen;
 		this.aeropuertoDestino = aeropuertoDestino;
-		this.fechaIda = fechaIda;
-		this.fechaVuelta = fechaVuelta;
+		this.fecha = fecha;
 		this.numAsientos = numAsientos;
 		this.numAsientosLibres = numAsientosLibres;
 		this.precio = precio;
@@ -46,7 +43,7 @@ public class clsVuelo
 		return codVuelo;
 	}
 
-	public void seCodVuelo(String codVuelo) {
+	public void setCodVuelo(String codVuelo) {
 		this.codVuelo = codVuelo;
 	}
 
@@ -67,19 +64,11 @@ public class clsVuelo
 	}
 
 	public Date getFechaIda() {
-		return fechaIda;
+		return fecha;
 	}
 
 	public void setFechaIda(Date fechaIda) {
-		this.fechaIda = fechaIda;
-	}
-
-	public Date getFechaVuelta() {
-		return fechaVuelta;
-	}
-
-	public void setFechaVuelta(Date fechaVuelta) {
-		this.fechaVuelta = fechaVuelta;
+		this.fecha = fechaIda;
 	}
 
 	public int getNumAsientos() {

@@ -15,8 +15,8 @@ public class clsUsuario
 	 @PrimaryKey
 	private String email;
 	private String numTarjetaCredito;
-	private ISistAutorizacion sistemaAutorizacion;
-	private IPasarela pasarelaDePago;
+	private itfSistAutorizacion sistemaAutorizacion;
+	private itfPasarela pasarelaDePago;
 	private clsAeropuerto aeroPreder;
 	//Usuario es el atributo de tipo clsUsuario en Pago
 	@Join
@@ -33,7 +33,7 @@ public class clsUsuario
 		this.numTarjetaCredito = null;
 	}
 	
-	public clsUsuario(String email,ISistAutorizacion sistemaAutorizacion, IPasarela pasarelaDePago, clsAeropuerto aeroPreder,  HashSet <clsPago> Listpagos, String numTarjetaCredito)
+	public clsUsuario(String email,itfSistAutorizacion sistemaAutorizacion, itfPasarela pasarelaDePago, clsAeropuerto aeroPreder,  HashSet <clsPago> Listpagos, String numTarjetaCredito)
 	{
 		this.email = email;
 		this.Listpagos =Listpagos;
@@ -61,19 +61,19 @@ public class clsUsuario
 		this.email = email;
 	}
 
-	public ISistAutorizacion getSistemaAutorizacion() {
+	public itfSistAutorizacion getSistemaAutorizacion() {
 		return sistemaAutorizacion;
 	}
 
-	public void setSistemaAutorizacion(ISistAutorizacion sistemaAutorizacion) {
+	public void setSistemaAutorizacion(itfSistAutorizacion sistemaAutorizacion) {
 		this.sistemaAutorizacion = sistemaAutorizacion;
 	}
 
-	public IPasarela getPasarelaDePago() {
+	public itfPasarela getPasarelaDePago() {
 		return pasarelaDePago;
 	}
 
-	public void setPasarelaDePago(IPasarela pasarelaDePago) {
+	public void setPasarelaDePago(itfPasarela pasarelaDePago) {
 		this.pasarelaDePago = pasarelaDePago;
 	}
 
