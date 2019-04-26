@@ -2,8 +2,13 @@ package COMUN;
 
 import java.util.ArrayList;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class clsAerolinea 
 {
+	@PrimaryKey
 	private String codAerolinea;
 	private double comision;
 	
