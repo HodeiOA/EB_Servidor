@@ -130,6 +130,14 @@ public class clsMain
 		} catch (Exception ex)
 		{
 			ex.printStackTrace();
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			
+			if (pm != null && !pm.isClosed()) {
+				pm.close();
+			}
 		}
 	}
 	
