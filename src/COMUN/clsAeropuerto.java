@@ -1,8 +1,10 @@
 package COMUN;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
@@ -13,9 +15,23 @@ public class clsAeropuerto implements Serializable
 	private String ciudad;
 	private String pais;
 	
+	@Persistent(mappedBy="aeroPreder")
+	private ArrayList<clsUsuario> lUsuarios;
+	
+	@Persistent(mappedBy="aeropuertoOrigen")
+	private ArrayList<clsVuelo> lSalidas;
+	
+	@Persistent(mappedBy="aeropuertoDestino")
+	private ArrayList<clsVuelo> lLLegadas;
+	
 	public clsAeropuerto()
 	{
-		
+		codAeropuerto = null;
+		ciudad = null;
+		pais = null;
+		lUsuarios = null;
+		lSalidas = null;
+		lLLegadas = null;
 	}
 	
 	public clsAeropuerto(String codAeropueto, String ciudad, String pais)
@@ -23,6 +39,9 @@ public class clsAeropuerto implements Serializable
 		this.codAeropuerto =  codAeropueto;
 		this.ciudad = ciudad;
 		this.pais = pais;
+		lUsuarios = new ArrayList<clsUsuario>();
+		lSalidas = new ArrayList<clsVuelo>();
+		lLLegadas = new ArrayList<clsVuelo>();
 	}
 
 	public String getCodAeropuerto()
@@ -53,6 +72,36 @@ public class clsAeropuerto implements Serializable
 	public void setPais(String pais)
 	{
 		this.pais = pais;
+	}
+
+	public ArrayList<clsUsuario> getlUsuarios()
+	{
+		return lUsuarios;
+	}
+
+	public ArrayList<clsVuelo> getlSalidas()
+	{
+		return lSalidas;
+	}
+
+	public ArrayList<clsVuelo> getlLLegadas()
+	{
+		return lLLegadas;
+	}
+
+	public void setlUsuarios(ArrayList<clsUsuario> lUsuarios)
+	{
+		this.lUsuarios = lUsuarios;
+	}
+
+	public void setlSalidas(ArrayList<clsVuelo> lSalidas)
+	{
+		this.lSalidas = lSalidas;
+	}
+
+	public void setlLLegadas(ArrayList<clsVuelo> lLLegadas)
+	{
+		this.lLLegadas = lLLegadas;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package COMUN;
 
 import java.io.Serializable;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
@@ -12,15 +13,23 @@ public class clsReserva implements Serializable
 	@PrimaryKey
 	private String codReserva;
 	private int numAsiento;
-	@ForeignKey
+	
+	@Column(name="FK_vuelo")
 	private clsVuelo vuelo;
+	
+	@Column(name="FK_usuario")
 	private clsUsuario usuario;
 	private String nombreViajero;
 	private double importe;
 	
 	public clsReserva()
 	{
-		
+		codReserva = null;
+		numAsiento = 0;
+		vuelo = null;
+		usuario = null;
+		nombreViajero = null;
+		importe = 0.0;
 	}
 	
 	public clsReserva(int numAsiento, clsVuelo vuelo, clsUsuario usuario, String nombreViajero, double importe)

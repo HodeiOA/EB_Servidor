@@ -38,8 +38,8 @@ public class clsMain
 		clsReserva reservaIda = new clsReserva(1, vueloIda, usuario, "Juan García", vueloIda.getPrecio());
 		clsReserva reservaVuelta = new clsReserva(1, vueloVuelta, usuario, "Juan García", vueloVuelta.getPrecio());
 		
-		clsPago pagoIda = new clsPago(usuario.getEmail(), reservaIda, usuario);
-		clsPago pagoVuelta = new clsPago(usuario.getEmail(), reservaVuelta, usuario);
+		clsPago pagoIda = new clsPago(reservaIda);
+		clsPago pagoVuelta = new clsPago(reservaVuelta);
 		
 		HashSet<clsAerolinea> listaAerolineas = new HashSet<clsAerolinea>();
 		listaAerolineas.add(aerolinea);

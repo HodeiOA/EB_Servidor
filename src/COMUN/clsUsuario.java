@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -12,31 +13,32 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable
 public class clsUsuario 
 {
-	 @PrimaryKey
+	@PrimaryKey
 	private String email;
 	private String numTarjetaCredito;
 	private itfSistAutorizacion sistemaAutorizacion;
 	private itfPasarela pasarelaDePago;
+	
+	@Column(name="FK_aeroPreder")
 	private clsAeropuerto aeroPreder;
-	//Usuario es el atributo de tipo clsUsuario en Pago
-	@Join
-	@Persistent(mappedBy="usuario", dependentElement="true")
-	private HashSet <clsPago> Listpagos;
+	
+	@Persistent(mappedBy="usuario")
+	private ArrayList<clsReserva> Listpagos;
 	
 	public clsUsuario()
 	{	
 		this.email = null;
-		this.Listpagos = new HashSet<clsPago>();
+		this.Listpagos = new ArrayList<clsReserva>();
 		this.sistemaAutorizacion = null;
 		this.pasarelaDePago = null;
 		this.aeroPreder = null;	
 		this.numTarjetaCredito = null;
 	}
 	
-	public clsUsuario(String email,itfSistAutorizacion sistemaAutorizacion, itfPasarela pasarelaDePago, clsAeropuerto aeroPreder,  HashSet <clsPago> Listpagos, String numTarjetaCredito)
+	public clsUsuario(String email,itfSistAutorizacion sistemaAutorizacion, itfPasarela pasarelaDePago, clsAeropuerto aeroPreder,  ArrayList<clsReserva> Listpagos, String numTarjetaCredito)
 	{
 		this.email = email;
-		this.Listpagos =Listpagos;
+		this.Listpagos = Listpagos;
 		this.sistemaAutorizacion = sistemaAutorizacion;
 		this.pasarelaDePago = pasarelaDePago;
 		this.aeroPreder = aeroPreder;
@@ -85,11 +87,11 @@ public class clsUsuario
 		this.aeroPreder = aeroPreder;
 	}
 	
-	public HashSet<clsPago> getListpagos() {
+	public ArrayList<clsReserva> getListpagos() {
 		return Listpagos;
 	}
 
-	public void setListpagos(HashSet<clsPago> listpagos) {
+	public void setListpagos(ArrayList<clsReserva> listpagos) {
 		Listpagos = listpagos;
 	}
 	

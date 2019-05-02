@@ -3,6 +3,8 @@ package COMUN;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.jdo.annotations.Column;
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
@@ -11,12 +13,19 @@ public class clsVuelo
 {
 	@PrimaryKey
 	private String codVuelo;
+	
+	@Column(name="aeropuertoOrigen")
 	private clsAeropuerto aeropuertoOrigen;
+	
+	@Column(name="aeropuertoDestino")
 	private clsAeropuerto aeropuertoDestino;
 	private Date fecha;
 	private int numAsientos;
 	private int numAsientosLibres;
 	private double precio;
+	
+	@Element(column="FK_vuelo")
+	private ArrayList<clsReserva> lReservas;
 	
 	private ArrayList<clsReserva> listaReservas;
 
@@ -68,12 +77,20 @@ public class clsVuelo
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
 
-	public Date getFechaIda() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFechaIda(Date fechaIda) {
-		this.fecha = fechaIda;
+	public ArrayList<clsReserva> getlReservas() {
+		return lReservas;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setlReservas(ArrayList<clsReserva> lReservas) {
+		this.lReservas = lReservas;
 	}
 
 	public int getNumAsientos() {

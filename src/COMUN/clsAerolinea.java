@@ -2,6 +2,7 @@ package COMUN;
 
 import java.util.ArrayList;
 
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
@@ -12,43 +13,52 @@ public class clsAerolinea
 	private String codAerolinea;
 	private double comision;
 	
+	@Element(column="FK_aerolinea")
+	private ArrayList<clsVuelo> lVuelos;
+	
 	public clsAerolinea() 
 	{
 		this.codAerolinea = null;
 		this.comision = 0.0;
+		this.lVuelos = null;
 	}
 	
 	public clsAerolinea(String codAerolinea, double comision) 
 	{
 		this.codAerolinea = codAerolinea;
 		this.comision = comision;
+		this.lVuelos = new ArrayList<clsVuelo>();
 	}
 
+	public ArrayList<clsVuelo> getlVuelos()
+	{
+		return lVuelos;
+	}
 
+	public void setlVuelos(ArrayList<clsVuelo> lVuelos)
+	{
+		this.lVuelos = lVuelos;
+	}
 
-	public String getCodAerolinea() {
+	public String getCodAerolinea()
+	{
 		return codAerolinea;
 	}
 
-
-
-	public void setCodAerolinea(String codAerolinea) {
+	public void setCodAerolinea(String codAerolinea)
+	{
 		this.codAerolinea = codAerolinea;
 	}
 
-
-
-	public double getComision() {
+	public double getComision()
+	{
 		return comision;
 	}
 
-
-
-	public void setComision(double comision) {
+	public void setComision(double comision)
+	{
 		this.comision = comision;
 	}
-
-
 
 	double calcularComisionDebida(ArrayList<clsReserva> historicoReservas )
 	{
@@ -83,7 +93,4 @@ public class clsAerolinea
 			return false;
 		return true;
 	}
-	
-	
-	
 }

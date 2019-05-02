@@ -1,53 +1,49 @@
 package COMUN;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class clsPago 
 {
-	 @PrimaryKey
+	@PrimaryKey
 	private String codPago;
+	
+	@Column(name="FK_reserva")
 	private clsReserva reserva;
-	private clsUsuario usuario;
 	
 	public clsPago()
 	{
 		this.codPago = null;
-		this.reserva = null;
-		this.usuario = null;		
+		this.reserva = null;	
 	}
 	
-	public clsPago(String email, clsReserva reserva,clsUsuario usuario)
+	public clsPago(clsReserva reserva)
 	{
-		this.codPago = email;
+		this.codPago = "P" + reserva.getCodReserva();
 		this.reserva = reserva;
-		this.usuario = usuario;
 	}
 
 	//Getters y Setters
-	public String getEmail() {
+	public String getEmail()
+	{
 		return codPago;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email)
+	{
 		this.codPago = email;
 	}
 
-	public clsReserva getReserva() {
+	public clsReserva getReserva()
+	{
 		return reserva;
 	}
 
-	public void setReserva(clsReserva reserva) {
+	public void setReserva(clsReserva reserva)
+	{
 		this.reserva = reserva;
-	}
-
-	public clsUsuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(clsUsuario usuario) {
-		this.usuario = usuario;
 	}
 
 	//HashCode e Equals
@@ -56,7 +52,6 @@ public class clsPago
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codPago == null) ? 0 : codPago.hashCode());
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -73,11 +68,6 @@ public class clsPago
 			if (other.codPago != null)
 				return false;
 		} else if (!codPago.equals(other.codPago))
-			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
-				return false;
-		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
 	}
