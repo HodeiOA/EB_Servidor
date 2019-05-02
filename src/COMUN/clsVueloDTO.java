@@ -3,7 +3,7 @@ package COMUN;
 import java.io.Serializable;
 import java.util.Date;
 
-public class VueloDTO implements Serializable
+public class clsVueloDTO implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -11,7 +11,7 @@ public class VueloDTO implements Serializable
 	private int numAsientosLibres;
 	private double precio;
 	
-	public VueloDTO(Date fecha, int numAsientosLibres, double precio) 
+	public clsVueloDTO(Date fecha, int numAsientosLibres, double precio) 
 	{
 		this.fecha = fecha;
 		this.numAsientosLibres = numAsientosLibres;

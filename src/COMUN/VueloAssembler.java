@@ -6,17 +6,17 @@ import java.util.List;
 
 public class VueloAssembler 
 {
-	public static List<VueloDTO> assemble(HashSet<clsVuelo> vuelos) 
-	{
-		List<VueloDTO> vuelosDTO = new ArrayList<>();
-
-		for (clsVuelo v : vuelos) 
-		{
-			vuelosDTO.add(new VueloDTO(v.getFechaIda(), v.getNumAsientosLibres(), v.getPrecio()));
-		}
-
-		System.out.println("* Assembling Vuelos ...");
-		
-		return vuelosDTO;
-	}
+//	public static List<clsVueloDTO> assemble(HashSet<clsVuelo> vuelos) 
+//	{
+//		List<clsVueloDTO> vuelosDTO = new ArrayList<>();
+//
+//		for (clsVuelo v : vuelos) 
+//		{
+//			vuelosDTO.add(new clsVueloDTO(v.getFecha(), v.getNumAsientosLibres(), v.getPrecio()));
+//		}
+//
+//		System.out.println("* Assembling Vuelos ...");
+//		
+//		return vuelosDTO;
+//	}
 }
