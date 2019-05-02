@@ -1,4 +1,4 @@
-package COMUN;
+package Assembler;
 
 import java.util.ArrayList;
 import java.util.HashSet;

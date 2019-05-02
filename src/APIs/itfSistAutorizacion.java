@@ -1,4 +1,4 @@
-package COMUN;
+package APIs;
 
 public interface itfSistAutorizacion
 {

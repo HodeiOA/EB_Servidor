@@ -1,4 +1,4 @@
-package COMUN;
+package ObjetosDominio;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,6 +9,9 @@ import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+
+import APIs.itfPasarela;
+import APIs.itfSistAutorizacion;
 
 @PersistenceCapable
 public class clsUsuario 

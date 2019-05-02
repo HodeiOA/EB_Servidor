@@ -1,4 +1,4 @@
-package COMUN;
+package ObjetosDominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable
+@PersistenceCapable(detachable="true")
 public class clsAeropuerto implements Serializable
 {
 	@PrimaryKey

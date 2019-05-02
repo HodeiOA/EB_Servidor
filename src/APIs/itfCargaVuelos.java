@@ -1,8 +1,10 @@
-package COMUN;
+package APIs;
 
 import java.rmi.Remote;
 import java.sql.Date;
 import java.util.HashSet;
+
+import ObjetosDominio.clsVuelo;
 
 public interface itfCargaVuelos extends Remote
 {

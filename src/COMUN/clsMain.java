@@ -10,6 +10,13 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 import javax.swing.text.html.ListView;
 
+import ObjetosDominio.clsAerolinea;
+import ObjetosDominio.clsAeropuerto;
+import ObjetosDominio.clsPago;
+import ObjetosDominio.clsReserva;
+import ObjetosDominio.clsUsuario;
+import ObjetosDominio.clsVuelo;
+
 public class clsMain
 {
 	//Cargamos el Persistence Manager Factory
@@ -74,7 +81,39 @@ public class clsMain
 		guardarObjeto(reservaVuelta);
 		guardarObjeto(pagoIda);
 		guardarObjeto(pagoVuelta);
-		
+		//Guardamos los objetos en la BBDD
+				try{
+					pm = pmf.getPersistenceManager();
+					tx = pm.currentTransaction();
+					tx.begin();
+					
+					aeropuerto1 = pm.makePersistent(aeropuerto1);
+					clsAeropuerto detachedA = pm.detachCopy(aeropuerto1);
+					
+					tx.commit();
+					
+					usuario.setAeroPreder(detachedA);
+					
+					pm = pmf.getPersistenceManager();
+					tx = pm.currentTransaction();
+					tx.begin();
+					
+					pm.makePersistent(usuario);
+					
+					tx.commit();
+					
+				} catch (Exception ex)
+				{
+					ex.printStackTrace();
+				} finally {
+					if (tx != null && tx.isActive()) {
+						tx.rollback();
+					}
+					
+					if (pm != null && !pm.isClosed()) {
+						pm.close();
+					}
+				}
 		//Leemos los objetos y los mostramos por pantalla
 		HashSet<clsAerolinea> listaAerolineas2 = leerTodasAerolineas();
 		HashSet<clsAeropuerto> listaAeropuertos2 = leerTodosAeropuertos();

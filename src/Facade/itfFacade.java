@@ -1,4 +1,4 @@
-package COMUN;
+package Facade;
 
 import java.rmi.Remote;
 import java.util.Date;

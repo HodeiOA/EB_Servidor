@@ -1,4 +1,4 @@
-package COMUN;
+package Facade;
 //package COMUN;
 //
 //import java.rmi.RemoteException;

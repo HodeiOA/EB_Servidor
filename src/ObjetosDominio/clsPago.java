@@ -1,4 +1,4 @@
-package COMUN;
+package ObjetosDominio;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.PersistenceCapable;
