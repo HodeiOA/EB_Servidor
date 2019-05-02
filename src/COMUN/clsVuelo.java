@@ -25,8 +25,6 @@ public class clsVuelo
 	private double precio;
 	
 	@Element(column="FK_vuelo")
-	private ArrayList<clsReserva> lReservas;
-	
 	private ArrayList<clsReserva> listaReservas;
 
 	public clsVuelo() 
@@ -81,16 +79,8 @@ public class clsVuelo
 		return fecha;
 	}
 
-	public ArrayList<clsReserva> getlReservas() {
-		return lReservas;
-	}
-
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-	}
-
-	public void setlReservas(ArrayList<clsReserva> lReservas) {
-		this.lReservas = lReservas;
 	}
 
 	public int getNumAsientos() {
