@@ -27,7 +27,7 @@ package Facade;
 //	}
 //
 //	@Override
-//	public boolean LoginUsuario(clsUsuario nuevoUsuario) 
+//	public clsUsuario LoginUsuario(clsUsuario nuevoUsuario) 
 //	{
 //		return appService.loginUsuario(nuevoUsuario);
 //	}
