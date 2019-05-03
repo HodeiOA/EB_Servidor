@@ -85,7 +85,7 @@ public class clsAppServiceVuelo
 		boolean pago = false;
 		clsReserva reserva = new clsReserva(numAsiento, vuelo, usuario, nomViajero, vuelo.getPrecio());
 		itfPasarela p = usuario.getPasarelaDePago();
-		//pago = p.ValidarPago
+		pago = p.RealizarPago(usuario.getNumTarjetaCredito());
 		
 		if(pago)
 		{
