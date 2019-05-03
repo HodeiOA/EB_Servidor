@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import APIs.itfCargaVuelos;
+import APIs.itfPasarela;
+import APIs.itfSistAutorizacion;
 import ObjetosDominio.clsVuelo;
 
 public class clsGateway 
@@ -80,6 +82,22 @@ public class clsGateway
 			retorno.add(v);
 		}
 		*/
+		return retorno;	
+	}
+	
+	boolean ValidarUsuario (String email, itfSistAutorizacion Sistema)
+	{
+		boolean retorno = false;
+		//Antes de llamar a este método, sistema tendrá que haber sido inicializado con facebook o google
+		Sistema.ValidarUsuario(email);
+		return retorno;		
+	}
+	
+	boolean RealizarPago (String numTarjetaCredito, itfPasarela Pasarela)
+	{
+		boolean retorno = false;
+		//Antes de llamar a este método, pasarela tendrá que haber sido inicializado con paypal o visa
+		Pasarela.RealizarPago(numTarjetaCredito);
 		return retorno;	
 		
 	}
