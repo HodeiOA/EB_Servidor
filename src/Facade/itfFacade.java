@@ -11,5 +11,5 @@ public interface itfFacade extends Remote
 //	public List<clsVueloDTO> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, Date fecha, String ciudadOrigen, String ciudadDestino);
 //	public List<clsVueloDTO>BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, Date fechaIda, Date fechaVuelta, String ciudadOrigen, String ciudadDestino);
 //	public List<clsVueloDTO>BuscarVueloCualquierMomento (clsAeropuerto aeropuesrtoPred, String ciudadOrigen, String ciudadDestino);
-//    boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo);
+//	boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo, vuelo, int numAsiento, int nomViajero);
 }

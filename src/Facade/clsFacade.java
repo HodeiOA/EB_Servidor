@@ -5,7 +5,6 @@ package Facade;
 //import java.rmi.server.UnicastRemoteObject;
 //import java.util.ArrayList;
 //import java.util.Date;
-//import java.util.HashSet;
 //import java.util.List;
 //
 //import es.deusto.ingenieria.sd.sms.server.data.dto.TVProgramAssembler;
@@ -36,7 +35,7 @@ package Facade;
 //	public List<VueloDTO> BuscarVueloIda(clsAeropuerto aeropuesrtoPred, Date fecha, String ciudadOrigen,
 //			String ciudadDestino) 
 //	{
-//		HashSet<clsVuelo> vuelosIda = new HashSet();
+//		ArrayList<clsVuelo> vuelosIda = new ArrayList();
 //		vuelosIda = appService.BuscarVueloIda(aeropuesrtoPred, fecha, ciudadOrigen, ciudadDestino);
 //		
 //		List<VueloDTO> vuelos = new ArrayList<>();
@@ -49,7 +48,7 @@ package Facade;
 //	public List<VueloDTO> BuscarVueloIdayVuelta(clsAeropuerto aeropuesrtoPred, Date fechaIda, Date fechaVuelta,
 //			String ciudadOrigen, String ciudadDestino) 
 //	{
-//		HashSet<clsVuelo> vuelosIdaYVuelta = new HashSet();
+//		ArrayList<clsVuelo> vuelosIdaYVuelta = new ArrayList();
 //		vuelosIdaYVuelta = appService.BuscarVueloIdayVuelta(aeropuesrtoPred, fechaIda, fechaVuelta, ciudadOrigen, ciudadDestino);
 //		
 //		List<VueloDTO> vuelos = new ArrayList<>();
@@ -62,7 +61,7 @@ package Facade;
 //	public List<VueloDTO> BuscarVueloCualquierMomento(clsAeropuerto aeropuesrtoPred, String ciudadOrigen,
 //			String ciudadDestino) 
 //	{
-//		HashSet<clsVuelo> vuelosCualquierMomento = new HashSet();
+//		ArrayList<clsVuelo> vuelosCualquierMomento = new ArrayList();
 //		vuelosCualquierMomento = appService.BuscarVueloCualquierMomento(aeropuesrtoPred, ciudadOrigen, ciudadDestino);
 //		
 //		List<VueloDTO> vuelos = new ArrayList<>();
@@ -72,9 +71,9 @@ package Facade;
 //	}
 //
 //	@Override
-//	public boolean RealizarPagoyReserva(clsUsuario usuario, clsVuelo vuelo) 
+//	boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo, vuelo, int numAsiento, int nomViajero);
 //	{
-//		return appService.RealizarPagoyReserva(usuario, vuelo);
+//		return appService.RealizarPagoyReserva(usuario, vuelo, numAsiento, nomViajero);
 //	}
 //	
 //}

@@ -1,12 +1,11 @@
 package Assembler;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class VueloAssembler 
 {
-//	public static List<clsVueloDTO> assemble(HashSet<clsVuelo> vuelos) 
+//	public static List<clsVueloDTO> assemble(ArrayList<clsVuelo> vuelos) 
 //	{
 //		List<clsVueloDTO> vuelosDTO = new ArrayList<>();
 //
