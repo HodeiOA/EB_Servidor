@@ -24,6 +24,8 @@ public class clsVuelo
 	private int numAsientosLibres;
 	private double precio;
 	
+	private ArrayList <Integer> asientos; //Asientos reservados
+	
 	@Element(column="FK_vuelo")
 	private ArrayList<clsReserva> listaReservas;
 
@@ -37,9 +39,10 @@ public class clsVuelo
 		this.numAsientosLibres = 0;
 		this.precio = 0;
 		this.listaReservas = null;
+		this.asientos = null;
 	}
 	
-	public clsVuelo(String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, Date fecha, int numAsientos, int numAsientosLibres, double precio, ArrayList<clsReserva> listaReservas) 
+	public clsVuelo(String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, Date fecha, int numAsientos, int numAsientosLibres, double precio, ArrayList<clsReserva> listaReservas, ArrayList <Integer> asientos) 
 	{
 		this.codVuelo = codVuelo;
 		this.aeropuertoOrigen = aeropuertoOrigen;
@@ -49,6 +52,7 @@ public class clsVuelo
 		this.numAsientosLibres = numAsientosLibres;
 		this.precio = precio;
 		this.listaReservas = listaReservas;
+		this.asientos = asientos;
 	}
 
 	public String getCodVuelo() {
@@ -111,10 +115,23 @@ public class clsVuelo
 		return listaReservas;
 	}
 
+	public ArrayList<Integer> getAsientos() {
+		return asientos;
+	}
+
+	public void setAsientos(ArrayList<Integer> asientos) {
+		this.asientos = asientos;
+	}
+
 	public void setListaReservas(ArrayList<clsReserva> listaReservas) {
 		this.listaReservas = listaReservas;
 	}
 
+	public void ReservaAsiento (Integer asiento)
+	{
+		asientos.add(asiento);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

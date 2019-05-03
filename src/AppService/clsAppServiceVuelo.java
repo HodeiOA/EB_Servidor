@@ -92,6 +92,7 @@ public class clsAppServiceVuelo
 			//TO DO: Escribimos la reserva con dao
 		}
 		vuelo.setNumAsientosLibres(vuelo.getNumAsientosLibres() - 1);
+		vuelo.ReservaAsiento(numAsiento);
 		//TO DO: Escribimos el vuelo con dao
 		return pago;		
 	}
