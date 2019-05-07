@@ -11,7 +11,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import APIs.itfPasarela;
-import APIs.itfSistAutorizacion;
+import APIs.itfSistAutorizacionFacebook;
 
 @PersistenceCapable
 public class clsUsuario 
@@ -19,7 +19,7 @@ public class clsUsuario
 	@PrimaryKey
 	private String email;
 	private String numTarjetaCredito;
-	private itfSistAutorizacion sistemaAutorizacion;
+	private itfSistAutorizacionFacebook sistemaAutorizacion;
 	private itfPasarela pasarelaDePago;
 	
 	@Column(name="FK_aeroPreder")
@@ -38,7 +38,7 @@ public class clsUsuario
 		this.numTarjetaCredito = null;
 	}
 	
-	public clsUsuario(String email,itfSistAutorizacion sistemaAutorizacion, itfPasarela pasarelaDePago, clsAeropuerto aeroPreder,  ArrayList<clsReserva> Listpagos, String numTarjetaCredito)
+	public clsUsuario(String email,itfSistAutorizacionFacebook sistemaAutorizacion, itfPasarela pasarelaDePago, clsAeropuerto aeroPreder,  ArrayList<clsReserva> Listpagos, String numTarjetaCredito)
 	{
 		this.email = email;
 		this.Listpagos = Listpagos;
@@ -66,11 +66,11 @@ public class clsUsuario
 		this.email = email;
 	}
 
-	public itfSistAutorizacion getSistemaAutorizacion() {
+	public itfSistAutorizacionFacebook getSistemaAutorizacion() {
 		return sistemaAutorizacion;
 	}
 
-	public void setSistemaAutorizacion(itfSistAutorizacion sistemaAutorizacion) {
+	public void setSistemaAutorizacion(itfSistAutorizacionFacebook sistemaAutorizacion) {
 		this.sistemaAutorizacion = sistemaAutorizacion;
 	}
 

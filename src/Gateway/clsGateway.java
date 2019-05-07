@@ -11,7 +11,11 @@ import APIs.itfCargaVuelosAmericanAirlines;
 import APIs.itfCargaVuelosIberia;
 import APIs.itfCargaVuelosLufthansa;
 import APIs.itfPasarela;
+import APIs.itfPasarelaPaypal;
+import APIs.itfPasarelaVisa;
 import APIs.itfSistAutorizacion;
+import APIs.itfSistAutorizacionFacebook;
+import APIs.itfSistAutorizacionGoogle;
 import ObjetosDominio.clsVuelo;
 
 public class clsGateway 
@@ -152,20 +156,44 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	boolean ValidarUsuario (String email)
+	boolean ValidarUsuario (String email, boolean modo, String args[])//modo =0 Google, =1 Facebook
 	{
-		itfSistAutorizacion Sistema;
 		boolean retorno = false;
-		//Antes de llamar a este método, sistema tendrá que haber sido inicializado con facebook o google
-		//Sistema.ValidarUsuario(email);
+		if(modo)
+		{
+			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
+			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			itfSistAutorizacionFacebook facebook  = (itfSistAutorizacionFacebook)registry.lookup(name);
+			retorno = facebook.ValidarUsuario(email);
+		}
+		else
+		{
+			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
+			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			itfSistAutorizacionGoogle google  = (itfSistAutorizacionGoogle)registry.lookup(name);
+			retorno = google.ValidarUsuario(email);
+		}	
 		return retorno;		
 	}
 	
-	boolean RealizarPago (String numTarjetaCredito, itfPasarela Pasarela)
+	boolean RealizarPago (String numTarjetaCredito, boolean modo, String args[])//0 Paypal 1 VISA
 	{
 		boolean retorno = false;
-		//Antes de llamar a este método, pasarela tendrá que haber sido inicializado con paypal o visa
-		Pasarela.RealizarPago(numTarjetaCredito);
+		if(modo)
+		{
+			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
+			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			itfPasarelaVisa visa  = (itfPasarelaVisa)registry.lookup(name);
+			retorno = visa.RealizarPago(numTarjetaCredito);
+		}
+		else
+		{
+			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
+			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			itfPasarelaPaypal paypal  = (itfPasarelaPaypal)registry.lookup(name);
+			retorno = paypal.RealizarPago(numTarjetaCredito);
+		}	
+		
 		return retorno;	
 		
 	}

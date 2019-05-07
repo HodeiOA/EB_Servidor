@@ -1,7 +1,7 @@
 package AppService;
 
 import ObjetosDominio.clsUsuario;
-import APIs.itfSistAutorizacion;
+import APIs.itfSistAutorizacionFacebook;
 
 public class clsAppServiceUsuario 
 {
@@ -9,7 +9,7 @@ public class clsAppServiceUsuario
 	{
 		boolean retorno = false;
 		//Antes de esto, en swing, darle valor a SistemaAutorización de usuario (Google o facebook)
-		itfSistAutorizacion i = nuevoUsuario.getSistemaAutorizacion(); 
+		itfSistAutorizacionFacebook i = nuevoUsuario.getSistemaAutorizacion(); 
 		//Vemos si el usuario es reconocido por la API externa
 		boolean b = i.ValidarUsuario(nuevoUsuario.getEmail());
 		
@@ -32,7 +32,7 @@ public class clsAppServiceUsuario
 		clsUsuario u = new clsUsuario();
 		boolean retorno = false;
 		//Antes de esto, en swing, darle valor a SistemaAutorización de usuario (Google o facebook)
-		itfSistAutorizacion i = nuevoUsuario.getSistemaAutorizacion(); 
+		itfSistAutorizacionFacebook i = nuevoUsuario.getSistemaAutorizacion(); 
 		//Vemos si el usuario es reconocido por la API externa
 		boolean b = i.ValidarUsuario(nuevoUsuario.getEmail());
 		

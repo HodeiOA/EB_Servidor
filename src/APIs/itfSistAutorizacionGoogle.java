@@ -1,6 +1,6 @@
 package APIs;
 
-public interface itfSistAutorizacion
+public interface itfSistAutorizacionGoogle
 {
 	boolean ValidarUsuario (String email);
 }
