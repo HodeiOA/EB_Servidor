@@ -2,16 +2,17 @@ package AppService;
 
 import ObjetosDominio.clsUsuario;
 import APIs.itfSistAutorizacionFacebook;
+import Gateway.clsGateway;
 
 public class clsAppServiceUsuario 
 {
-	public boolean RegistrarUsuario (clsUsuario nuevoUsuario)
+	public boolean RegistrarUsuario (clsUsuario nuevoUsuario, boolean modo)
 	{
 		boolean retorno = false;
-		//Antes de esto, en swing, darle valor a SistemaAutorización de usuario (Google o facebook)
-		itfSistAutorizacionFacebook i = nuevoUsuario.getSistemaAutorizacion(); 
+
 		//Vemos si el usuario es reconocido por la API externa
-		boolean b = i.ValidarUsuario(nuevoUsuario.getEmail());
+		String args[] = null;
+		boolean b = clsGateway.ValidarUsuario(nuevoUsuario.getEmail(), modo, args);
 		
 		if(b)
 		{
@@ -27,14 +28,13 @@ public class clsAppServiceUsuario
 		return false;		
 	}
 	
-	public clsUsuario LoginUsuario (clsUsuario nuevoUsuario)
+	public clsUsuario LoginUsuario (clsUsuario nuevoUsuario, boolean modo)
 	{
 		clsUsuario u = new clsUsuario();
 		boolean retorno = false;
 		//Antes de esto, en swing, darle valor a SistemaAutorización de usuario (Google o facebook)
-		itfSistAutorizacionFacebook i = nuevoUsuario.getSistemaAutorizacion(); 
-		//Vemos si el usuario es reconocido por la API externa
-		boolean b = i.ValidarUsuario(nuevoUsuario.getEmail());
+		String args[] = null;
+		boolean b = clsGateway.ValidarUsuario(nuevoUsuario.getEmail(), modo, args);
 		
 		if(b)
 		{

@@ -155,7 +155,7 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	boolean ValidarUsuario (String email, boolean modo, String args[])//modo =0 Google, =1 Facebook
+	public static boolean ValidarUsuario (String email, boolean modo, String args[])//modo =0 Google, =1 Facebook
 	{
 		boolean retorno = false;
 		if(modo)
