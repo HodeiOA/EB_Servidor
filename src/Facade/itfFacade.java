@@ -1,6 +1,7 @@
 package Facade;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 
@@ -9,12 +10,12 @@ import ObjetosDominio.clsAeropuerto;
 import ObjetosDominio.clsUsuario;
 import ObjetosDominio.clsVuelo;
 
-public interface itfFacade extends Remote 
+public interface itfFacade extends Remote
 {
-	boolean RegistrarUsuario (clsUsuario nuevoUsuario);
-	clsUsuario LoginUsuario (clsUsuario nuevoUsuario);
-	public List<clsVueloDTO> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, Date fecha, String ciudadOrigen, String ciudadDestino);
-	public List<clsVueloDTO>BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, Date fechaIda, Date fechaVuelta, String ciudadOrigen, String ciudadDestino);
-	public List<clsVueloDTO>BuscarVueloCualquierMomento (clsAeropuerto aeropuesrtoPred, String ciudadOrigen, String ciudadDestino);
-	boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero);
+	boolean RegistrarUsuario (clsUsuario nuevoUsuario)  throws RemoteException;
+	clsUsuario LoginUsuario (clsUsuario nuevoUsuario)  throws RemoteException;
+	public List<clsVueloDTO> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, Date fecha, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
+	public List<clsVueloDTO>BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, Date fechaIda, Date fechaVuelta, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
+	public List<clsVueloDTO>BuscarVueloCualquierMomento (clsAeropuerto aeropuesrtoPred, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
+	boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero)  throws RemoteException;
 }
