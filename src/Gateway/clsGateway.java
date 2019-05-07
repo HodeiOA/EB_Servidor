@@ -13,7 +13,6 @@ import APIs.itfCargaVuelosLufthansa;
 import APIs.itfPasarela;
 import APIs.itfPasarelaPaypal;
 import APIs.itfPasarelaVisa;
-import APIs.itfSistAutorizacion;
 import APIs.itfSistAutorizacionFacebook;
 import APIs.itfSistAutorizacionGoogle;
 import ObjetosDominio.clsVuelo;
@@ -161,17 +160,43 @@ public class clsGateway
 		boolean retorno = false;
 		if(modo)
 		{
-			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
-			itfSistAutorizacionFacebook facebook  = (itfSistAutorizacionFacebook)registry.lookup(name);
-			retorno = facebook.ValidarUsuario(email);
+			Registry registry;
+			try 
+			{
+				registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
+				String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+				itfSistAutorizacionFacebook facebook  = (itfSistAutorizacionFacebook)registry.lookup(name);
+				retorno = facebook.ValidarUsuario(email);
+				
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else
 		{
-			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
-			itfSistAutorizacionGoogle google  = (itfSistAutorizacionGoogle)registry.lookup(name);
-			retorno = google.ValidarUsuario(email);
+			try 
+			{
+				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
+				String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+				itfSistAutorizacionGoogle google  = (itfSistAutorizacionGoogle)registry.lookup(name);
+				retorno = google.ValidarUsuario(email);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}	
 		return retorno;		
 	}
@@ -181,17 +206,39 @@ public class clsGateway
 		boolean retorno = false;
 		if(modo)
 		{
-			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
-			itfPasarelaVisa visa  = (itfPasarelaVisa)registry.lookup(name);
-			retorno = visa.RealizarPago(numTarjetaCredito);
+			try{
+				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
+				String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+				itfPasarelaVisa visa  = (itfPasarelaVisa)registry.lookup(name);
+				retorno = visa.RealizarPago(numTarjetaCredito);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 		else
 		{
-			Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
-			itfPasarelaPaypal paypal  = (itfPasarelaPaypal)registry.lookup(name);
-			retorno = paypal.RealizarPago(numTarjetaCredito);
+			try{	
+				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
+				String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+				itfPasarelaPaypal paypal  = (itfPasarelaPaypal)registry.lookup(name);
+				retorno = paypal.RealizarPago(numTarjetaCredito);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}	
 		
 		return retorno;	
