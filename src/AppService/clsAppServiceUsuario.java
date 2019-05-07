@@ -5,7 +5,7 @@ import APIs.itfSistAutorizacion;
 
 public class clsAppServiceUsuario 
 {
-	boolean RegistrarUsuario (clsUsuario nuevoUsuario)
+	public boolean RegistrarUsuario (clsUsuario nuevoUsuario)
 	{
 		boolean retorno = false;
 		//Antes de esto, en swing, darle valor a SistemaAutorización de usuario (Google o facebook)
@@ -27,7 +27,7 @@ public class clsAppServiceUsuario
 		return false;		
 	}
 	
-	clsUsuario LoginUsuario (clsUsuario nuevoUsuario)
+	public clsUsuario LoginUsuario (clsUsuario nuevoUsuario)
 	{
 		clsUsuario u = new clsUsuario();
 		boolean retorno = false;

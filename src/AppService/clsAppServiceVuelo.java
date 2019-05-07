@@ -11,7 +11,7 @@ import ObjetosDominio.clsVuelo;
 
 public class clsAppServiceVuelo 
 {
-	ArrayList <clsVuelo> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, Date fecha, String ciudadOrigen, String ciudadDestino)
+	public ArrayList <clsVuelo> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, java.util.Date fecha, String ciudadOrigen, String ciudadDestino)
 	{
 		//Lee todos los vuelos de DAO
 		ArrayList <clsVuelo> TodosVuelos = new ArrayList<clsVuelo>(); //Leer de DAO con el método de itfCargaVuelos:cargarIda
@@ -33,7 +33,7 @@ public class clsAppServiceVuelo
 		return VuelosRetorno;
 	}
 	
-	ArrayList <clsVuelo> BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, Date fechaIda, Date fechaVuelta, String ciudadOrigen, String ciudadDestino)
+	public ArrayList <clsVuelo> BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, java.util.Date fechaIda, java.util.Date fechaVuelta, String ciudadOrigen, String ciudadDestino)
 	{
 		
 		//Lee todos los vuelos de DAO
@@ -57,7 +57,7 @@ public class clsAppServiceVuelo
 		
 	}
 
-	ArrayList <clsVuelo> BuscarVueloCualquierMomento (clsAeropuerto aeropuesrtoPred, String ciudadOrigen, String ciudadDestino)
+	public ArrayList <clsVuelo> BuscarVueloCualquierMomento (clsAeropuerto aeropuesrtoPred, String ciudadOrigen, String ciudadDestino)
 	{
 		
 		//Lee todos los vuelos de DAO
@@ -80,7 +80,7 @@ public class clsAppServiceVuelo
 		return VuelosRetorno;
 	}
 
-	boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero)
+	public boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero)
 	{
 		boolean pago = false;
 		clsReserva reserva = new clsReserva(numAsiento, vuelo, usuario, nomViajero, vuelo.getPrecio());
