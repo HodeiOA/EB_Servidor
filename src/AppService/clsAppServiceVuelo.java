@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import APIs.itfPasarela;
+import Gateway.clsGateway;
 import ObjetosDominio.clsAeropuerto;
 import ObjetosDominio.clsReserva;
 import ObjetosDominio.clsUsuario;
@@ -14,7 +15,8 @@ public class clsAppServiceVuelo
 	public ArrayList <clsVuelo> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, java.util.Date fecha, String ciudadOrigen, String ciudadDestino)
 	{
 		//Lee todos los vuelos de DAO
-		ArrayList <clsVuelo> TodosVuelos = new ArrayList<clsVuelo>(); //Leer de DAO con el método de itfCargaVuelos:cargarIda
+		String args[] = null;
+		ArrayList <clsVuelo> TodosVuelos = clsGateway.cargarIda(ciudadOrigen, ciudadDestino, fecha, args);//LEER DE DAO
 		ArrayList <clsVuelo> VuelosRetorno  = new ArrayList<clsVuelo>();
 		
 		//En la primera vuelta sólo metemos los que tengan destino u origen igual al prefdeterminado
@@ -37,7 +39,7 @@ public class clsAppServiceVuelo
 	{
 		
 		//Lee todos los vuelos de DAO
-		ArrayList <clsVuelo> TodosVuelos = new ArrayList<clsVuelo>(); //Leer de DAO con el método de itfCargaVuelos: cargarIdaVuelta
+		ArrayList <clsVuelo> TodosVuelos = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> VuelosRetorno  = new ArrayList<clsVuelo>();
 		
 		//En la primera vuelta sólo metemos los que tengan destino u origen igual al prefdeterminado

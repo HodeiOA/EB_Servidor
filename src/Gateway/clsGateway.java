@@ -19,7 +19,7 @@ import ObjetosDominio.clsVuelo;
 
 public class clsGateway 
 {
-	ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, Date fecha, String[] args)
+	public static ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, java.util.Date fecha, String[] args)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
@@ -65,7 +65,7 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, Date fechaIda,Date fechaVuelta, String[] args)
+	public ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, Date fechaIda,Date fechaVuelta, String[] args)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
@@ -110,7 +110,7 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	ArrayList <clsVuelo> cargarCualquierMomento(String ciudadOrigen, String ciudadDestino, String args[])
+	public ArrayList <clsVuelo> cargarCualquierMomento(String ciudadOrigen, String ciudadDestino, String args[])
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
