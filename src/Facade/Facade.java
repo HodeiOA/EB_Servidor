@@ -29,14 +29,15 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	}
 
 	@Override
-	public boolean RegistrarUsuario(clsUsuario nuevoUsuario) {
-		return appServiceUsuario.RegistrarUsuario(nuevoUsuario);
+	public boolean RegistrarUsuario(clsUsuario nuevoUsuario, boolean modo) 
+	{
+		return appServiceUsuario.RegistrarUsuario(nuevoUsuario, modo);
 	}
 
 	@Override
-	public clsUsuario LoginUsuario(clsUsuario nuevoUsuario) 
+	public clsUsuario LoginUsuario(clsUsuario nuevoUsuario, boolean modo) 
 	{
-		return appServiceUsuario.LoginUsuario(nuevoUsuario);
+		return appServiceUsuario.LoginUsuario(nuevoUsuario, modo);
 	}
 
 	@Override

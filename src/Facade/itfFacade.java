@@ -12,8 +12,8 @@ import ObjetosDominio.clsVuelo;
 
 public interface itfFacade extends Remote
 {
-	boolean RegistrarUsuario (clsUsuario nuevoUsuario)  throws RemoteException;
-	clsUsuario LoginUsuario (clsUsuario nuevoUsuario)  throws RemoteException;
+	boolean RegistrarUsuario (clsUsuario nuevoUsuario, boolean modo)  throws RemoteException;
+	clsUsuario LoginUsuario (clsUsuario nuevoUsuario, boolean modo)  throws RemoteException;
 	public List<clsVueloDTO> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, Date fecha, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
 	public List<clsVueloDTO>BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, Date fechaIda, Date fechaVuelta, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
 	public List<clsVueloDTO>BuscarVueloCualquierMomento (clsAeropuerto aeropuesrtoPred, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
