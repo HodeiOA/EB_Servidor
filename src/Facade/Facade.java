@@ -79,9 +79,9 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	}
 
 	@Override
-	public boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero)
+	public boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero, boolean pasarela)
 	{
-		return appServiceVuelo.RealizarPagoyReserva(usuario, vuelo, numAsiento, nomViajero);
+		return appServiceVuelo.RealizarPagoyReserva(usuario, vuelo, numAsiento, nomViajero, pasarela);
 	}
 
 }

@@ -19,19 +19,26 @@ import ObjetosDominio.clsVuelo;
 
 public class clsGateway 
 {
-	public static ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, java.util.Date fecha, String[] args)
+	static String IP = "127.0.0.1";
+	static String Puerto = "1099";
+	static String Service = "";
+	
+	public static ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, java.util.Date fecha)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
 		//Cargamos los vuelos de cada aerolínea
+		
 		try {
-			Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String nameIberia = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			Service = "iberia";
+			Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+			String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
 			retorno = iberia.cargarIda(ciudadOrigen, ciudadDestino, fecha);
 			
-			Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String nameLufthansa = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			Service = "lufthansa";
+			Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+			String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
 			aux = iberia.cargarIda(ciudadOrigen, ciudadDestino, fecha);
 			
@@ -40,8 +47,9 @@ public class clsGateway
 				retorno.add(v);
 			}
 			
-			Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String nameAmericanAirlines = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			Service = "AmericanAirlines";
+			Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+			String nameAmericanAirlines =  "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosAmericanAirlines AmericanAirlines = (itfCargaVuelosAmericanAirlines)registryLufthansa.lookup(nameAmericanAirlines);
 			aux = AmericanAirlines.cargarIda(ciudadOrigen, ciudadDestino, fecha);
 			for(clsVuelo v: aux)
@@ -65,19 +73,22 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	public ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, Date fechaIda,Date fechaVuelta, String[] args)
+	public ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, Date fechaIda,Date fechaVuelta)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
 		//Cargamos los vuelos de cada aerolínea
+		String args[] = null;
 				try {
-					Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-					String nameIberia = "//" + args[0] + ":" + args[1] + "/" + args[2];
+					Service = "iberia";
+					Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+					String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 					itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
 					retorno = iberia.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
 					
-					Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-					String nameLufthansa = "//" + args[0] + ":" + args[1] + "/" + args[2];
+					Service = "Lufthansa";
+					Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+					String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
 					itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
 					aux = iberia.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
 					
@@ -85,16 +96,15 @@ public class clsGateway
 					{
 						retorno.add(v);
 					}
-					
-					Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-					String nameAmericanAirlines = "//" + args[0] + ":" + args[1] + "/" + args[2];
+					Service = "AmericanAirlines";
+					Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+					String nameAmericanAirlines = "//" + IP + ":" +Puerto + "/" + Service;
 					itfCargaVuelosAmericanAirlines AmericanAirlines = (itfCargaVuelosAmericanAirlines)registryLufthansa.lookup(nameAmericanAirlines);
 					aux = AmericanAirlines.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
 					for(clsVuelo v: aux)
 					{
 						retorno.add(v);
 					}
-					
 				} catch (NumberFormatException e)
 				{
 					// TODO Auto-generated catch block
@@ -110,19 +120,21 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	public ArrayList <clsVuelo> cargarCualquierMomento(String ciudadOrigen, String ciudadDestino, String args[])
+	public ArrayList <clsVuelo> cargarCualquierMomento(String ciudadOrigen, String ciudadDestino)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
 		//Cargamos los vuelos de cada aerolínea
 		try {
-			Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String nameIberia = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			Service = "iberia";
+			Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+			String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
 			retorno = iberia.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
 			
-			Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String nameLufthansa = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			Service = "Lufthansa";
+			Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+			String nameLufthansa ="//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
 			aux = iberia.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
 			
@@ -131,8 +143,9 @@ public class clsGateway
 				retorno.add(v);
 			}
 			
-			Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-			String nameAmericanAirlines = "//" + args[0] + ":" + args[1] + "/" + args[2];
+			Service = "AmericanAirlines";
+			Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+			String nameAmericanAirlines = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosAmericanAirlines AmericanAirlines = (itfCargaVuelosAmericanAirlines)registryLufthansa.lookup(nameAmericanAirlines);
 			aux = AmericanAirlines.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
 			for(clsVuelo v: aux)
@@ -155,7 +168,7 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	public static boolean ValidarUsuario (String email, boolean modo, String args[])//modo =0 Google, =1 Facebook
+	public static boolean ValidarUsuario (String email, boolean modo)//modo =0 Google, =1 Facebook
 	{
 		boolean retorno = false;
 		if(modo)
@@ -163,8 +176,9 @@ public class clsGateway
 			Registry registry;
 			try 
 			{
-				registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-				String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+				Service = "Fcebook";
+				registry = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+				String name ="//" + IP + ":" +Puerto + "/" + Service;
 				itfSistAutorizacionFacebook facebook  = (itfSistAutorizacionFacebook)registry.lookup(name);
 				retorno = facebook.ValidarUsuario(email);
 				
@@ -183,8 +197,9 @@ public class clsGateway
 		{
 			try 
 			{
-				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-				String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+				Service = "Google";
+				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+				String name = "//" + IP + ":" +Puerto + "/" + Service;
 				itfSistAutorizacionGoogle google  = (itfSistAutorizacionGoogle)registry.lookup(name);
 				retorno = google.ValidarUsuario(email);
 			} catch (NumberFormatException e) {
@@ -201,14 +216,15 @@ public class clsGateway
 		return retorno;		
 	}
 	
-	boolean RealizarPago (String numTarjetaCredito, boolean modo, String args[])//0 Paypal 1 VISA
+	public static boolean RealizarPago (String numTarjetaCredito, boolean modo)//0 Paypal 1 VISA
 	{
 		boolean retorno = false;
 		if(modo)
 		{
 			try{
-				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-				String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+				Service = "Visa";
+				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+				String name =  "//" + IP + ":" +Puerto + "/" + Service;
 				itfPasarelaVisa visa  = (itfPasarelaVisa)registry.lookup(name);
 				retorno = visa.RealizarPago(numTarjetaCredito);
 		} catch (NumberFormatException e) {
@@ -225,8 +241,9 @@ public class clsGateway
 		else
 		{
 			try{	
-				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(args[1]))));
-				String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+				Service = "PayPal";
+				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+				String name = "//" + IP + ":" +Puerto + "/" + Service;
 				itfPasarelaPaypal paypal  = (itfPasarelaPaypal)registry.lookup(name);
 				retorno = paypal.RealizarPago(numTarjetaCredito);
 			} catch (NumberFormatException e) {
@@ -240,8 +257,6 @@ public class clsGateway
 				e.printStackTrace();
 			}
 		}	
-		
 		return retorno;	
-		
 	}
 }

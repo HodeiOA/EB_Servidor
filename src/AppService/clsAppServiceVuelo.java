@@ -16,7 +16,7 @@ public class clsAppServiceVuelo
 	{
 		//Lee todos los vuelos de DAO
 		String args[] = null;
-		ArrayList <clsVuelo> TodosVuelos = clsGateway.cargarIda(ciudadOrigen, ciudadDestino, fecha, args);//LEER DE DAO
+		ArrayList <clsVuelo> TodosVuelos = clsGateway.cargarIda(ciudadOrigen, ciudadDestino, fecha);//LEER DE DAO
 		ArrayList <clsVuelo> VuelosRetorno  = new ArrayList<clsVuelo>();
 		
 		//En la primera vuelta sólo metemos los que tengan destino u origen igual al prefdeterminado
@@ -82,20 +82,19 @@ public class clsAppServiceVuelo
 		return VuelosRetorno;
 	}
 
-	public boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero)
+	public boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero, boolean pasarela) //Pasarela = 1 Visa = 0 Paypal
 	{
 		boolean pago = false;
 		clsReserva reserva = new clsReserva(numAsiento, vuelo, usuario, nomViajero, vuelo.getPrecio());
-		itfPasarela p = usuario.getPasarelaDePago();
-		pago = p.RealizarPago(usuario.getNumTarjetaCredito());
 		
-		if(pago)
-		{
-			//TO DO: Escribimos la reserva con dao
-		}
-		vuelo.setNumAsientosLibres(vuelo.getNumAsientosLibres() - 1);
-		vuelo.ReservaAsiento(numAsiento);
-		//TO DO: Escribimos el vuelo con dao
+			pago = clsGateway.RealizarPago(usuario.getNumTarjetaCredito(), pasarela);
+			if(pago)
+			{
+				//ESCRIBIR RESERVA + CREAR PAGO + VUELO
+				vuelo.setNumAsientosLibres(vuelo.getNumAsientosLibres() - 1);
+				vuelo.ReservaAsiento(numAsiento);
+			}
+	
 		return pago;		
 	}
 }

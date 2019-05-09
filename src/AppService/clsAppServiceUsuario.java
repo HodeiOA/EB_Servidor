@@ -11,8 +11,7 @@ public class clsAppServiceUsuario
 		boolean retorno = false;
 
 		//Vemos si el usuario es reconocido por la API externa
-		String args[] = null;
-		boolean b = clsGateway.ValidarUsuario(nuevoUsuario.getEmail(), modo, args);
+		boolean b = clsGateway.ValidarUsuario(nuevoUsuario.getEmail(), modo);
 		
 		if(b)
 		{
@@ -33,8 +32,7 @@ public class clsAppServiceUsuario
 		clsUsuario u = new clsUsuario();
 		boolean retorno = false;
 		//Antes de esto, en swing, darle valor a SistemaAutorización de usuario (Google o facebook)
-		String args[] = null;
-		boolean b = clsGateway.ValidarUsuario(nuevoUsuario.getEmail(), modo, args);
+		boolean b = clsGateway.ValidarUsuario(nuevoUsuario.getEmail(), modo);
 		
 		if(b)
 		{
