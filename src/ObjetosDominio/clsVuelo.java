@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
@@ -26,7 +27,7 @@ public class clsVuelo
 	
 	private ArrayList <Integer> asientos; //Asientos reservados
 	
-	@Element(column="FK_vuelo")
+	@Persistent(mappedBy="vuelo")
 	private ArrayList<clsReserva> listaReservas;
 
 	public clsVuelo() 
