@@ -17,13 +17,13 @@ import APIs.itfSistAutorizacionFacebook;
 import APIs.itfSistAutorizacionGoogle;
 import ObjetosDominio.clsVuelo;
 
-public class clsGateway 
+public class clsGateway implements itfGateway
 {
 	static String IP = "127.0.0.1";
 	static String Puerto = "1099";
 	static String Service = "";
 	
-	public static ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, java.util.Date fecha)
+	public ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, java.util.Date fecha)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
@@ -73,7 +73,7 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	public ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, Date fechaIda,Date fechaVuelta)
+	public ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, java.util.Date fechaIda,java.util.Date fechaVuelta)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
@@ -168,7 +168,7 @@ public class clsGateway
 		return retorno;	
 	}
 	
-	public static boolean ValidarUsuario (String email, boolean modo)//modo =0 Google, =1 Facebook
+	public boolean ValidarUsuario (String email, boolean modo)//modo =0 Google, =1 Facebook
 	{
 		boolean retorno = false;
 		if(modo)
@@ -216,7 +216,7 @@ public class clsGateway
 		return retorno;		
 	}
 	
-	public static boolean RealizarPago (String numTarjetaCredito, boolean modo)//0 Paypal 1 VISA
+	public boolean RealizarPago (String numTarjetaCredito, boolean modo)//0 Paypal 1 VISA
 	{
 		boolean retorno = false;
 		if(modo)
