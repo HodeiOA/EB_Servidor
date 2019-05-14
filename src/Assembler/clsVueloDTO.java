@@ -7,22 +7,22 @@ public class clsVueloDTO implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Date fecha;
+	private String fecha;
 	private int numAsientosLibres;
 	private double precio;
 	
-	public clsVueloDTO(Date fecha, int numAsientosLibres, double precio) 
+	public clsVueloDTO(String fecha, int numAsientosLibres, double precio) 
 	{
 		this.fecha = fecha;
 		this.numAsientosLibres = numAsientosLibres;
 		this.precio = precio;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

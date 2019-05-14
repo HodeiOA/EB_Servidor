@@ -4,7 +4,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import APIs.itfCargaVuelosAmericanAirlines;
@@ -23,7 +22,7 @@ public class clsGateway implements itfGateway
 	static String Puerto = "1099";
 	static String Service = "";
 	
-	public ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, java.util.Date fecha)
+	public ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, String fecha)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
@@ -73,7 +72,7 @@ public class clsGateway implements itfGateway
 		return retorno;	
 	}
 	
-	public ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, java.util.Date fechaIda,java.util.Date fechaVuelta)
+	public ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, String fechaIda,String fechaVuelta)
 	{
 		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();

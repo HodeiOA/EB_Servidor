@@ -20,7 +20,7 @@ public class clsVuelo
 	
 	@Column(name="aeropuertoDestino")
 	private clsAeropuerto aeropuertoDestino;
-	private Date fecha;
+	private String fecha;
 	private int numAsientos;
 	private int numAsientosLibres;
 	private double precio;
@@ -43,7 +43,7 @@ public class clsVuelo
 		this.asientos = null;
 	}
 	
-	public clsVuelo(String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, Date fecha, int numAsientos, int numAsientosLibres, double precio, ArrayList<clsReserva> listaReservas, ArrayList <Integer> asientos) 
+	public clsVuelo(String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, String fecha, int numAsientos, int numAsientosLibres, double precio, ArrayList<clsReserva> listaReservas, ArrayList <Integer> asientos) 
 	{
 		this.codVuelo = codVuelo;
 		this.aeropuertoOrigen = aeropuertoOrigen;
@@ -80,11 +80,11 @@ public class clsVuelo
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

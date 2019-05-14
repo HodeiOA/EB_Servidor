@@ -18,7 +18,7 @@ public class clsAppServiceVuelo
 	itfDAO DAO = new clsDAO();
 	clsGateway gateway= new clsGateway();
 	
-	public ArrayList <clsVuelo> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, java.util.Date fecha, String ciudadOrigen, String ciudadDestino)
+	public ArrayList <clsVuelo> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, String fecha, String ciudadOrigen, String ciudadDestino)
 	{
 		//Lee todos los vuelos de DAO
 		ArrayList <clsVuelo> VuelosGateway = gateway.cargarIda(ciudadOrigen, ciudadDestino, fecha);
@@ -53,7 +53,7 @@ public class clsAppServiceVuelo
 		return VuelosRetorno;
 	}
 	
-	public ArrayList <clsVuelo> BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, java.util.Date fechaIda, java.util.Date fechaVuelta, String ciudadOrigen, String ciudadDestino)
+	public ArrayList <clsVuelo> BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, String fechaIda, String fechaVuelta, String ciudadOrigen, String ciudadDestino)
 	{
 		
 		//Lee todos los vuelos de DAO

@@ -39,8 +39,8 @@ public class clsMain
 		
 		clsUsuario usuario = new clsUsuario("prueba@prueba.com", null, null, aeropuerto1, null, "123");
 		
-		clsVuelo vueloIda = new clsVuelo("IB001", aeropuerto1, aeropuerto2, new Date(23, 05, 2019), 120, 120, 180.99, null, null);
-		clsVuelo vueloVuelta = new clsVuelo("IB002", aeropuerto2, aeropuerto1, new Date(30, 05, 2019), 120, 120, 200, null, null);
+		clsVuelo vueloIda = new clsVuelo("IB001", aeropuerto1, aeropuerto2, "23/05/2019", 120, 120, 180.99, null, null);
+		clsVuelo vueloVuelta = new clsVuelo("IB002", aeropuerto2, aeropuerto1, "30/05/2019", 120, 120, 200, null, null);
 		
 		clsReserva reservaIda = new clsReserva(1, vueloIda, usuario, "Juan García", vueloIda.getPrecio());
 		clsReserva reservaVuelta = new clsReserva(1, vueloVuelta, usuario, "Juan García", vueloVuelta.getPrecio());

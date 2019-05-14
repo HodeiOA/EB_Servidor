@@ -14,8 +14,8 @@ public interface itfFacade extends Remote
 {
 	boolean RegistrarUsuario (clsUsuario nuevoUsuario, boolean modo)  throws RemoteException;
 	clsUsuario LoginUsuario (clsUsuario nuevoUsuario, boolean modo)  throws RemoteException;
-	public List<clsVueloDTO> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, Date fecha, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
-	public List<clsVueloDTO>BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, Date fechaIda, Date fechaVuelta, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
+	public List<clsVueloDTO> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, String fecha, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
+	public List<clsVueloDTO>BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, String fechaIda, String fechaVuelta, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
 	public List<clsVueloDTO>BuscarVueloCualquierMomento (clsAeropuerto aeropuesrtoPred, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
 	boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero, boolean pasarela)  throws RemoteException;
 }

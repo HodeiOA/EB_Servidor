@@ -41,7 +41,7 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	}
 
 	@Override
-	public List<clsVueloDTO> BuscarVueloIda(clsAeropuerto aeropuesrtoPred, Date fecha, String ciudadOrigen,
+	public List<clsVueloDTO> BuscarVueloIda(clsAeropuerto aeropuesrtoPred, String fecha, String ciudadOrigen,
 			String ciudadDestino) 
 	{
 		ArrayList<clsVuelo> vuelosIda = new ArrayList();
@@ -53,7 +53,7 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	}
 
 	@Override
-	public List<clsVueloDTO> BuscarVueloIdayVuelta(clsAeropuerto aeropuesrtoPred, Date fechaIda, Date fechaVuelta,
+	public List<clsVueloDTO> BuscarVueloIdayVuelta(clsAeropuerto aeropuesrtoPred, String fechaIda, String fechaVuelta,
 			String ciudadOrigen, String ciudadDestino) 
 	{
 		ArrayList<clsVuelo> vuelosIdaYVuelta = new ArrayList();

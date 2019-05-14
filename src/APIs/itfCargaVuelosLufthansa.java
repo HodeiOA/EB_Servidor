@@ -9,7 +9,7 @@ import ObjetosDominio.clsVuelo;
 
 public interface itfCargaVuelosLufthansa extends Remote
 {
-	ArrayList <clsVuelo> cargarIda(String aeroOrigen, String ciudadDestino, Date fecha);
-	ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, Date fechaIda,Date fechaVuelta);
+	ArrayList<clsVuelo> cargarIda(String aeroOrigen, String ciudadDestino, String fecha);
+	ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, String fechaIda,String fechaVuelta);
 	ArrayList <clsVuelo> cargarCualquierMomento(String ciudadoOrigen, String ciudadDestino);
 }
