@@ -21,8 +21,8 @@ public class clsVuelo
 	@Column(name="aeropuertoDestino")
 	private clsAeropuerto aeropuertoDestino;
 	private String fecha;
-	private int numAsientos;
-	private int numAsientosLibres;
+	private ArrayList<Integer> Asientos;
+	private ArrayList<Integer> AsientosOcupados;
 	private double precio;
 	
 	private ArrayList <Integer> asientos; //Asientos reservados
@@ -36,21 +36,21 @@ public class clsVuelo
 		this.aeropuertoOrigen = null;
 		this.aeropuertoDestino = null;
 		this.fecha = null;
-		this.numAsientos = 0;
-		this.numAsientosLibres = 0;
+		this.Asientos = null;
+		this.AsientosOcupados = null;
 		this.precio = 0;
 		this.listaReservas = null;
 		this.asientos = null;
 	}
 	
-	public clsVuelo(String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, String fecha, int numAsientos, int numAsientosLibres, double precio, ArrayList<clsReserva> listaReservas, ArrayList <Integer> asientos) 
+	public clsVuelo( ArrayList<Integer> Asientos,  ArrayList<Integer> AsientosOcupados, String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, String fecha, double precio, ArrayList<clsReserva> listaReservas, ArrayList <Integer> asientos) 
 	{
 		this.codVuelo = codVuelo;
 		this.aeropuertoOrigen = aeropuertoOrigen;
 		this.aeropuertoDestino = aeropuertoDestino;
 		this.fecha = fecha;
-		this.numAsientos = numAsientos;
-		this.numAsientosLibres = numAsientosLibres;
+		this.Asientos = Asientos;
+		this.AsientosOcupados = AsientosOcupados;
 		this.precio = precio;
 		this.listaReservas = listaReservas;
 		this.asientos = asientos;
@@ -88,20 +88,12 @@ public class clsVuelo
 		this.fecha = fecha;
 	}
 
-	public int getNumAsientos() {
-		return numAsientos;
+	public ArrayList<Integer> getAsientosOcupados() {
+		return AsientosOcupados;
 	}
 
-	public void setNumAsientos(int numAsientos) {
-		this.numAsientos = numAsientos;
-	}
-
-	public int getNumAsientosLibres() {
-		return numAsientosLibres;
-	}
-
-	public void setNumAsientosLibres(int numAsientosLibres) {
-		this.numAsientosLibres = numAsientosLibres;
+	public void setAsientosOcupados(ArrayList<Integer> asientosOcupados) {
+		AsientosOcupados = asientosOcupados;
 	}
 
 	public double getPrecio() {
@@ -158,4 +150,8 @@ public class clsVuelo
 		return true;
 	}
 	
+	public void addAsientoOcupado(int asiento)
+	{
+		AsientosOcupados.add(asiento);
+	}
 }

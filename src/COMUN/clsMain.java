@@ -1,6 +1,7 @@
 package COMUN;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.jdo.Extent;
@@ -22,15 +23,21 @@ public class clsMain
 	//Cargamos el Persistence Manager Factory
 	static PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	//Cragamos el Persistence Manager
-	static PersistenceManager pm = null;
+	static PersistenceManager pm = pmf.getPersistenceManager();
 	//Transacción para agrupar varias operaciones de BBDD
-	static Transaction tx = null;
+	static Transaction tx = pm.currentTransaction();;
 			
 	public static void main(String[] args)
 	{
 		System.out.println("Prueba de JDO");
 		System.out.println("-----------------------------");
+		ArrayList <Integer> asientos = new ArrayList <Integer>();
+		ArrayList <Integer> asientosOcupados = new ArrayList <Integer>();
 		
+		for (int i=0; i<120; i++)
+		{
+			asientos.add(i);
+		}
 		//Creando objetos y las listas
 		clsAerolinea aerolinea = new clsAerolinea("IB", 10.0);
 		
@@ -38,9 +45,9 @@ public class clsMain
 		clsAeropuerto aeropuerto2 = new clsAeropuerto("DUB", "Dublin", "Irlanda");
 		
 		clsUsuario usuario = new clsUsuario("prueba@prueba.com", null, null, aeropuerto1, null, "123");
-		
-		clsVuelo vueloIda = new clsVuelo("IB001", aeropuerto1, aeropuerto2, "23/05/2019", 120, 120, 180.99, null, null);
-		clsVuelo vueloVuelta = new clsVuelo("IB002", aeropuerto2, aeropuerto1, "30/05/2019", 120, 120, 200, null, null);
+		//( ArrayList<Integer> Asientos,  ArrayList<Integer> AsientosOcupados, String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, String fecha, double precio, ArrayList<clsReserva> listaReservas, ArrayList <Integer> asientos) 
+		clsVuelo vueloIda = new clsVuelo(asientos, asientosOcupados,"IB001", aeropuerto1, aeropuerto2, "23/05/2019", 180.99, null, null);
+		clsVuelo vueloVuelta = new clsVuelo(asientos, asientosOcupados, "IB002", aeropuerto2, aeropuerto1, "30/05/2019",200, null, null);
 		
 		clsReserva reservaIda = new clsReserva(1, vueloIda, usuario, "Juan García", vueloIda.getPrecio());
 		clsReserva reservaVuelta = new clsReserva(1, vueloVuelta, usuario, "Juan García", vueloVuelta.getPrecio());
@@ -70,11 +77,11 @@ public class clsMain
 		listaPagos.add(pagoIda);
 		listaPagos.add(pagoVuelta);
 		
-		//Guardamos los objetos en la BBDD
-//		guardarObjeto(aerolinea);
-//		guardarObjeto(aeropuerto1);
+		//Guardamos los objetos en la BBDD - Con esto no va bien 
+		guardarObjeto(aerolinea);
+		guardarObjeto(aeropuerto1);
 //		guardarObjeto(aeropuerto2);
-//		guardarUsuario(usuario);
+		guardarUsuario(usuario);
 //		guardarObjeto(vueloIda);
 //		guardarObjeto(vueloVuelta);
 //		guardarObjeto(reservaIda);
@@ -82,42 +89,42 @@ public class clsMain
 //		guardarObjeto(pagoIda);
 //		guardarObjeto(pagoVuelta);
 		
-		try
-		{
-			pm = pmf.getPersistenceManager();
-			tx = pm.currentTransaction();
-			tx.begin();
-			
-			pm.makePersistent(aerolinea);
-			pm.makePersistent(aeropuerto1);
-			pm.makePersistent(aeropuerto2);
-			pm.makePersistent(usuario);
-			pm.makePersistent(vueloIda);
-			pm.makePersistent(vueloVuelta);
-			pm.makePersistent(reservaIda);
-			pm.makePersistent(reservaVuelta);
-			pm.makePersistent(pagoIda);
-			pm.makePersistent(pagoVuelta);
-			
-			tx.commit();
-		}
-		catch (Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		
-		finally 
-		{
-			if (tx != null && tx.isActive()) 
-			{
-				tx.rollback();
-			}
-			
-			if (pm != null && !pm.isClosed()) 
-			{
-				pm.close();
-			}
-		}
+//		try
+//		{
+//			pm = pmf.getPersistenceManager();
+//			tx = pm.currentTransaction();
+//			tx.begin();
+//			//Con esto va bien 
+//			pm.makePersistent(aerolinea);
+//			pm.makePersistent(aeropuerto1);
+//			pm.makePersistent(aeropuerto2);
+//			pm.makePersistent(usuario);
+//			pm.makePersistent(vueloIda);
+//			pm.makePersistent(vueloVuelta);
+//			pm.makePersistent(reservaIda);
+//			pm.makePersistent(reservaVuelta);
+//			pm.makePersistent(pagoIda);
+//			pm.makePersistent(pagoVuelta);
+//			
+//			tx.commit();
+//		}
+//		catch (Exception ex)
+//		{
+//			ex.printStackTrace();
+//		}
+//		
+//		finally 
+//		{
+//			if (tx != null && tx.isActive()) 
+//			{
+//				tx.rollback();
+//			}
+//			
+//			if (pm != null && !pm.isClosed()) 
+//			{
+//				pm.close();
+//			}
+//		}
 		
 		//Leemos los objetos y los mostramos por pantalla
 		HashSet<clsAerolinea> listaAerolineas2 = leerTodasAerolineas();
@@ -162,16 +169,16 @@ public class clsMain
 	
 	public static void guardarObjeto(Object objeto)
 	{
-		//Cargamos el Persistence Manager Factory
-		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-		//Cragamos el Persistence Manager
-		PersistenceManager pm = null;
-		//Transacción para agrupar varias operaciones de BBDD
-		Transaction tx = null;
+//		//Cargamos el Persistence Manager Factory
+//		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+//		//Cragamos el Persistence Manager
+//		PersistenceManager pm = null;
+//		//Transacción para agrupar varias operaciones de BBDD
+//		Transaction tx = null;
 		
 		try{
-			pm = pmf.getPersistenceManager();
-			tx = pm.currentTransaction();
+//			pm = pmf.getPersistenceManager();
+//			tx = pm.currentTransaction();
 			tx.begin();
 			
 			pm.makePersistent(objeto);
@@ -181,7 +188,8 @@ public class clsMain
 		} catch (Exception ex)
 		{
 			ex.printStackTrace();
-		} finally {
+		} finally 
+		{
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}

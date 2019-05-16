@@ -137,7 +137,7 @@ public class clsAppServiceVuelo
 				DAO.guardarObjeto(reserva);
 				clsPago pagorealizado = new clsPago(reserva);
 				DAO.guardarObjeto(pagorealizado);
-				vuelo.setNumAsientosLibres(vuelo.getNumAsientosLibres() - 1);
+				vuelo.addAsientoOcupado(numAsiento);
 				vuelo.ReservaAsiento(numAsiento);
 				DAO.ActualizarVuelo(vuelo);
 			}

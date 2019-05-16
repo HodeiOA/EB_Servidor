@@ -13,7 +13,7 @@ public class VueloAssembler
 
 		for (clsVuelo v : vuelos) 
 		{
-			vuelosDTO.add(new clsVueloDTO(v.getFecha(), v.getNumAsientosLibres(), v.getPrecio()));
+			vuelosDTO.add(new clsVueloDTO(v.getFecha(),v.getAsientos(), v.getPrecio(), v.getAsientosOcupados()));
 		}
 
 		System.out.println("* Assembling Vuelos ...");
