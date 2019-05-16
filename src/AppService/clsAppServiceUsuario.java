@@ -1,53 +1,64 @@
 package AppService;
 
 import ObjetosDominio.clsUsuario;
+
+import java.util.ArrayList;
+
 import APIs.itfSistAutorizacionFacebook;
+import DAO.clsDAO;
+import DAO.itfDAO;
 import Gateway.clsGateway;
 import Gateway.itfGateway;
 
 public class clsAppServiceUsuario 
 {
+	itfDAO DAO = new clsDAO();
 	itfGateway gateway= new clsGateway();
 	
-	public boolean RegistrarUsuario (clsUsuario nuevoUsuario, boolean modo)
+	public boolean RegistrarUsuario(clsUsuario nuevoUsuario, boolean modo)
 	{
-		boolean retorno = false;
+		boolean retorno;
 
 		//Vemos si el usuario es reconocido por la API externa
-		boolean b = gateway.ValidarUsuario(nuevoUsuario.getEmail(), modo);
+		retorno = gateway.ValidarUsuario(nuevoUsuario.getEmail(), modo);
 		
-		if(b)
+		if(retorno)
 		{
-			//El usuario ya estaba en la BD, no se puede rregistrar
-			retorno = false;
+			DAO.guardarObjeto(nuevoUsuario);
 		}
 		else
 		{
-			retorno = true;
-			//TO-DO: Llamada a DAO Para gaurdar
-			//DAO.guardarObjeto(nuevoUsuario);
+			//El usuario no se puede validar
 		}
-		return false;		
+		
+		return retorno;
 	}
 	
-	public clsUsuario LoginUsuario (clsUsuario nuevoUsuario, boolean modo)
+	public clsUsuario LoginUsuario(clsUsuario nuevoUsuario, boolean modo)
 	{
-		clsUsuario u = new clsUsuario();
-		boolean retorno = false;
-		//Antes de esto, en swing, darle valor a SistemaAutorización de usuario (Google o facebook)
-		boolean b = gateway.ValidarUsuario(nuevoUsuario.getEmail(), modo);
+		ArrayList<clsUsuario> lUsuarios;
+		clsUsuario u = null;
 		
-		if(b)
+		boolean validar = gateway.ValidarUsuario(nuevoUsuario.getEmail(), modo);
+		
+		if(validar)
 		{
-			//El usuario ya estaba en la BD, puede loggearse
-			retorno = true;
-			//Leemos de la BD el usuario con ese email y lo devolvemos con todos sus atributos
-			//DAO
+			//El usuario se ha validado
+			lUsuarios = DAO.leerTodosUsuarios();
+			
+			for(clsUsuario aux: lUsuarios)
+			{
+				if(nuevoUsuario.getEmail().equals(aux.getEmail()))
+				{
+					u = aux;
+				}
+			}
 		}
 		else
 		{
-			retorno = false;
+			//No se puede validar el email
 		}
-		return u;	
+		
+		return u;
 	}
 }
