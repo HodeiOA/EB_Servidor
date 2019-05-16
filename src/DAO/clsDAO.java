@@ -13,6 +13,7 @@ import com.mysql.cj.Query;
 
 import ObjetosDominio.clsAerolinea;
 import ObjetosDominio.clsAeropuerto;
+import ObjetosDominio.clsPago;
 import ObjetosDominio.clsReserva;
 import ObjetosDominio.clsUsuario;
 import ObjetosDominio.clsVuelo;
@@ -228,6 +229,40 @@ public class clsDAO implements itfDAO
 		}
 		
 		return listaReservas;
+	}
+	public ArrayList<clsPago> leerTodosPagos() 
+	{
+		ArrayList<clsPago> listaPagos = new ArrayList<clsPago>();
+		
+		try{
+			pm = pmf.getPersistenceManager();
+			tx = pm.currentTransaction();
+			tx.begin();
+			
+			Extent<clsPago> extent = pm.getExtent(clsPago.class, true);
+			
+			for(clsPago pago: extent)
+			{
+				listaPagos.add(pago);
+			}
+			
+			tx.commit();
+			
+		} catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}finally 
+		{
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+			
+			if (pm != null && !pm.isClosed()) {
+				pm.close();
+			}
+		}
+		
+		return listaPagos;
 	}
 
 	@Override
