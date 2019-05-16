@@ -25,8 +25,6 @@ public class clsVuelo
 	private ArrayList<Integer> AsientosOcupados;
 	private double precio;
 	
-	private ArrayList <Integer> asientos; //Asientos reservados
-	
 	@Persistent(mappedBy="vuelo")
 	private ArrayList<clsReserva> listaReservas;
 
@@ -40,7 +38,7 @@ public class clsVuelo
 		this.AsientosOcupados = null;
 		this.precio = 0;
 		this.listaReservas = null;
-		this.asientos = null;
+
 	}
 	
 	public clsVuelo( ArrayList<Integer> Asientos,  ArrayList<Integer> AsientosOcupados, String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, String fecha, double precio, ArrayList<clsReserva> listaReservas, ArrayList <Integer> asientos) 
@@ -53,7 +51,6 @@ public class clsVuelo
 		this.AsientosOcupados = AsientosOcupados;
 		this.precio = precio;
 		this.listaReservas = listaReservas;
-		this.asientos = asientos;
 	}
 
 	public String getCodVuelo() {
@@ -108,21 +105,13 @@ public class clsVuelo
 		return listaReservas;
 	}
 
-	public ArrayList<Integer> getAsientos() {
-		return asientos;
-	}
-
-	public void setAsientos(ArrayList<Integer> asientos) {
-		this.asientos = asientos;
-	}
-
 	public void setListaReservas(ArrayList<clsReserva> listaReservas) {
 		this.listaReservas = listaReservas;
 	}
 
 	public void ReservaAsiento (Integer asiento)
 	{
-		asientos.add(asiento);
+		Asientos.add(asiento);
 	}
 	
 	@Override
@@ -153,5 +142,9 @@ public class clsVuelo
 	public void addAsientoOcupado(int asiento)
 	{
 		AsientosOcupados.add(asiento);
+	}
+
+	public ArrayList<Integer> getAsientos() {
+		return Asientos;
 	}
 }

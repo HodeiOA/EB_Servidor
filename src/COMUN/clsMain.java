@@ -82,6 +82,17 @@ public class clsMain
 		guardarObjeto(aeropuerto1);
 //		guardarObjeto(aeropuerto2);
 		guardarUsuario(usuario);
+		
+		//tx.commit();
+		if (tx != null && tx.isActive()) 
+			{
+				tx.rollback();
+			}
+			
+			if (pm != null && !pm.isClosed()) 
+			{
+				pm.close();
+			}
 //		guardarObjeto(vueloIda);
 //		guardarObjeto(vueloVuelta);
 //		guardarObjeto(reservaIda);
@@ -188,16 +199,17 @@ public class clsMain
 		} catch (Exception ex)
 		{
 			ex.printStackTrace();
-		} finally 
-		{
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-		}
+		} 
+//		finally 
+//		{
+//			if (tx != null && tx.isActive()) {
+//				tx.rollback();
+//			}
+//			
+//			if (pm != null && !pm.isClosed()) {
+//				pm.close();
+//			}
+//		}
 	}
 	
 	public static void guardarUsuario(clsUsuario usuario)
