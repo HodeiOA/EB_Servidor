@@ -23,13 +23,12 @@ public class clsDAO implements itfDAO
 	//Cargamos el Persistence Manager Factory
 	static PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	//Cragamos el Persistence Manager
-	static PersistenceManager pm = pmf.getPersistenceManager();;
-	//Transacción para agrupar varias operaciones de BBDD
-	static Transaction tx;	
+	static PersistenceManager pm = pmf.getPersistenceManager();;	
 	
 	@Override
 	public void guardarObjeto(Object objeto) 
 	{
+		Transaction tx = null;
 		try{
 			tx = pm.currentTransaction();
 			tx.begin();
@@ -52,6 +51,7 @@ public class clsDAO implements itfDAO
 	@Override
 	public ArrayList<clsAerolinea> leerTodasAerolineas() {
 		ArrayList <clsAerolinea> listaAerolineas = new ArrayList <clsAerolinea>();
+		Transaction tx = null;
 		try{
 			tx = pm.currentTransaction();
 			tx.begin();
@@ -82,6 +82,7 @@ public class clsDAO implements itfDAO
 	public ArrayList<clsAeropuerto> leerTodosAeropuertos() 
 	{
 		ArrayList<clsAeropuerto> listaAeropuertos = new ArrayList<clsAeropuerto>();
+		Transaction tx = null;
 		try{
 			tx = pm.currentTransaction();
 			tx.begin();
@@ -112,7 +113,7 @@ public class clsDAO implements itfDAO
 	public ArrayList<clsUsuario> leerTodosUsuarios() 
 	{
 		ArrayList<clsUsuario> listaUsuarios = new ArrayList<clsUsuario>();
-	
+		Transaction tx = null;
 		try{
 			tx = pm.currentTransaction();
 			tx.begin();
@@ -143,7 +144,7 @@ public class clsDAO implements itfDAO
 	public ArrayList<clsVuelo> leerTodosVuelos()
 	{
 		ArrayList<clsVuelo> listaVuelos = new ArrayList<clsVuelo>();
-		
+		Transaction tx = null;
 		try{
 			tx = pm.currentTransaction();
 			tx.begin();
@@ -174,7 +175,7 @@ public class clsDAO implements itfDAO
 	public ArrayList<clsReserva> leerTodasReservas() 
 	{
 		ArrayList<clsReserva> listaReservas = new ArrayList<clsReserva>();
-		
+		Transaction tx = null;
 		try{
 			tx = pm.currentTransaction();
 			tx.begin();
@@ -204,7 +205,7 @@ public class clsDAO implements itfDAO
 	public ArrayList<clsPago> leerTodosPagos() 
 	{
 		ArrayList<clsPago> listaPagos = new ArrayList<clsPago>();
-		
+		Transaction tx = null;
 		try{
 			tx = pm.currentTransaction();
 			tx.begin();
@@ -234,6 +235,7 @@ public class clsDAO implements itfDAO
 	@Override
 	public void ActualizarVuelo(clsVuelo vuelo) 
 	{
+		
 		//Da error Query<clsVuelo> query = pm.newQuery("UPDATE" +clsVuelo.class.getName()+" SET NUMASIENTOS= "+ vuelo.getNumAsientos()" AND ASIENTOS="+vuelo.getAsientos()+" WHERE codVuelo ="+vuelo.getCodVuelo());
 		//Long number = (Long)query.execute();
 		
