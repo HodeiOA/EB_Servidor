@@ -23,7 +23,7 @@ public class clsDAO implements itfDAO
 	//Cargamos el Persistence Manager Factory
 	static PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	//Cragamos el Persistence Manager
-	static PersistenceManager pm;
+	static PersistenceManager pm = pmf.getPersistenceManager();;
 	//Transacción para agrupar varias operaciones de BBDD
 	static Transaction tx;	
 	
@@ -31,7 +31,6 @@ public class clsDAO implements itfDAO
 	public void guardarObjeto(Object objeto) 
 	{
 		try{
-			pm = pmf.getPersistenceManager();
 			tx = pm.currentTransaction();
 			tx.begin();
 			
@@ -47,10 +46,6 @@ public class clsDAO implements itfDAO
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
 		}
 	}
 
@@ -58,7 +53,6 @@ public class clsDAO implements itfDAO
 	public ArrayList<clsAerolinea> leerTodasAerolineas() {
 		ArrayList <clsAerolinea> listaAerolineas = new ArrayList <clsAerolinea>();
 		try{
-			pm = pmf.getPersistenceManager();
 			tx = pm.currentTransaction();
 			tx.begin();
 			//Para hacer la select, usamos extent
@@ -79,10 +73,6 @@ public class clsDAO implements itfDAO
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
 		}
 		
 		return listaAerolineas;
@@ -93,7 +83,6 @@ public class clsDAO implements itfDAO
 	{
 		ArrayList<clsAeropuerto> listaAeropuertos = new ArrayList<clsAeropuerto>();
 		try{
-			pm = pmf.getPersistenceManager();
 			tx = pm.currentTransaction();
 			tx.begin();
 			
@@ -114,10 +103,6 @@ public class clsDAO implements itfDAO
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
 		}
 		
 		return listaAeropuertos;
@@ -129,7 +114,6 @@ public class clsDAO implements itfDAO
 		ArrayList<clsUsuario> listaUsuarios = new ArrayList<clsUsuario>();
 	
 		try{
-			pm = pmf.getPersistenceManager();
 			tx = pm.currentTransaction();
 			tx.begin();
 			
@@ -150,10 +134,6 @@ public class clsDAO implements itfDAO
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
 		}
 		
 		return listaUsuarios;
@@ -165,7 +145,6 @@ public class clsDAO implements itfDAO
 		ArrayList<clsVuelo> listaVuelos = new ArrayList<clsVuelo>();
 		
 		try{
-			pm = pmf.getPersistenceManager();
 			tx = pm.currentTransaction();
 			tx.begin();
 			
@@ -186,10 +165,6 @@ public class clsDAO implements itfDAO
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
 		}
 		
 		return listaVuelos;
@@ -201,7 +176,6 @@ public class clsDAO implements itfDAO
 		ArrayList<clsReserva> listaReservas = new ArrayList<clsReserva>();
 		
 		try{
-			pm = pmf.getPersistenceManager();
 			tx = pm.currentTransaction();
 			tx.begin();
 			
@@ -223,9 +197,6 @@ public class clsDAO implements itfDAO
 				tx.rollback();
 			}
 			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
 		}
 		
 		return listaReservas;
@@ -235,7 +206,6 @@ public class clsDAO implements itfDAO
 		ArrayList<clsPago> listaPagos = new ArrayList<clsPago>();
 		
 		try{
-			pm = pmf.getPersistenceManager();
 			tx = pm.currentTransaction();
 			tx.begin();
 			
@@ -256,10 +226,6 @@ public class clsDAO implements itfDAO
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
-			
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
 		}
 		
 		return listaPagos;
@@ -270,6 +236,16 @@ public class clsDAO implements itfDAO
 	{
 		//Da error Query<clsVuelo> query = pm.newQuery("UPDATE" +clsVuelo.class.getName()+" SET NUMASIENTOS= "+ vuelo.getNumAsientos()" AND ASIENTOS="+vuelo.getAsientos()+" WHERE codVuelo ="+vuelo.getCodVuelo());
 		//Long number = (Long)query.execute();
+		
+	}
+
+	@Override
+	public void cerrarConexion() 
+	{
+		if (pm != null && !pm.isClosed()) 
+		{
+			pm.close();
+		}
 		
 	}
 
