@@ -8,8 +8,9 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
+import javax.jdo.Query;
 
-import com.mysql.cj.Query;
+
 
 import ObjetosDominio.clsAerolinea;
 import ObjetosDominio.clsAeropuerto;
@@ -236,7 +237,7 @@ public class clsDAO implements itfDAO
 	public void ActualizarVuelo(clsVuelo vuelo) 
 	{
 		
-		//Da error Query<clsVuelo> query = pm.newQuery("UPDATE" +clsVuelo.class.getName()+" SET NUMASIENTOS= "+ vuelo.getNumAsientos()" AND ASIENTOS="+vuelo.getAsientos()+" WHERE codVuelo ="+vuelo.getCodVuelo());
+		 Query<clsVuelo> query = pm.newQuery("UPDATE" +clsVuelo.class.getName()+" SET NUMASIENTOS= "+ vuelo.getAsientos()+" AND ASIENTOS="+vuelo.getAsientos()+" WHERE codVuelo ="+vuelo.getCodVuelo());
 		//Long number = (Long)query.execute();
 		
 	}

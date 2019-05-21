@@ -1,5 +1,6 @@
 package AppService;
 
+import ObjetosDominio.clsAeropuerto;
 import ObjetosDominio.clsUsuario;
 
 import java.util.ArrayList;
@@ -60,5 +61,11 @@ public class clsAppServiceUsuario
 		}
 		
 		return u;
+	}
+	
+	public ArrayList <clsAeropuerto>getAeropuertos ()
+	{
+		ArrayList <clsAeropuerto> retorno = DAO.leerTodosAeropuertos();
+		return retorno;
 	}
 }
