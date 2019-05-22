@@ -27,7 +27,7 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	private clsAppServiceUsuario appServiceUsuario;
 	private clsAppServiceVuelo appServiceVuelo;
 
-	protected Facade() throws RemoteException 
+	public Facade() throws RemoteException 
 	{
 		super();
 	}
