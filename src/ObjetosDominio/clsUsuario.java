@@ -19,8 +19,6 @@ public class clsUsuario
 	@PrimaryKey
 	private String email;
 	private String numTarjetaCredito;
-	private itfSistAutorizacionFacebook sistemaAutorizacion;
-	private itfPasarela pasarelaDePago;
 	
 	@Column(name="FK_aeroPreder")
 	private clsAeropuerto aeroPreder;
@@ -32,18 +30,14 @@ public class clsUsuario
 	{	
 		this.email = null;
 		this.Listpagos = new ArrayList<clsReserva>();
-		this.sistemaAutorizacion = null;
-		this.pasarelaDePago = null;
 		this.aeroPreder = null;	
 		this.numTarjetaCredito = null;
 	}
 	
-	public clsUsuario(String email,itfSistAutorizacionFacebook sistemaAutorizacion, itfPasarela pasarelaDePago, clsAeropuerto aeroPreder,  ArrayList<clsReserva> Listpagos, String numTarjetaCredito)
+	public clsUsuario(String email, clsAeropuerto aeroPreder,  ArrayList<clsReserva> Listpagos, String numTarjetaCredito)
 	{
 		this.email = email;
 		this.Listpagos = Listpagos;
-		this.sistemaAutorizacion = sistemaAutorizacion;
-		this.pasarelaDePago = pasarelaDePago;
 		this.aeroPreder = aeroPreder;
 		this.numTarjetaCredito = numTarjetaCredito;
 	}
@@ -64,22 +58,6 @@ public class clsUsuario
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public itfSistAutorizacionFacebook getSistemaAutorizacion() {
-		return sistemaAutorizacion;
-	}
-
-	public void setSistemaAutorizacion(itfSistAutorizacionFacebook sistemaAutorizacion) {
-		this.sistemaAutorizacion = sistemaAutorizacion;
-	}
-
-	public itfPasarela getPasarelaDePago() {
-		return pasarelaDePago;
-	}
-
-	public void setPasarelaDePago(itfPasarela pasarelaDePago) {
-		this.pasarelaDePago = pasarelaDePago;
 	}
 
 	public clsAeropuerto getAeroPreder() {

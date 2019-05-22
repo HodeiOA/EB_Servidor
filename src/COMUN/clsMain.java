@@ -47,7 +47,7 @@ public class clsMain
 		clsAeropuerto aeropuerto1 = new clsAeropuerto("BCN", "Barcelona", "Espana");
 		clsAeropuerto aeropuerto2 = new clsAeropuerto("DUB", "Dublin", "Irlanda");
 		
-		clsUsuario usuario = new clsUsuario("prueba@prueba.com", null, null, aeropuerto1, null, "123");
+		clsUsuario usuario = new clsUsuario("prueba@prueba.com",aeropuerto1, null, "123");
 		//( ArrayList<Integer> Asientos,  ArrayList<Integer> AsientosOcupados, String codVuelo, clsAeropuerto aeropuertoOrigen, clsAeropuerto aeropuertoDestino, String fecha, double precio, ArrayList<clsReserva> listaReservas, ArrayList <Integer> asientos) 
 		clsVuelo vueloIda = new clsVuelo(asientos, asientosOcupados,"IB001", aeropuerto1, aeropuerto2, "23/05/2019", 180.99, null, null);
 		clsVuelo vueloVuelta = new clsVuelo(asientos, asientosOcupados, "IB002", aeropuerto2, aeropuerto1, "30/05/2019",200, null, null);

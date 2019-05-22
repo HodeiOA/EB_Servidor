@@ -14,18 +14,13 @@ public class clsUsuarioDTO implements Serializable
 
 	private String email;
 	private String numTarjetaCredito;
-	private itfSistAutorizacionFacebook sistemaAutorizacion;
-	private itfPasarela pasarelaDePago;
 	private clsAeropuerto aeroPreder;
 	private ArrayList<clsReserva> Listpagos;
 	
-	public clsUsuarioDTO(String email, String numTarjetaCredito, itfSistAutorizacionFacebook sistemaAutorizacion,
-			itfPasarela pasarelaDePago, clsAeropuerto aeroPreder, ArrayList<clsReserva> listpagos) 
+	public clsUsuarioDTO(String email, String numTarjetaCredito, clsAeropuerto aeroPreder, ArrayList<clsReserva> listpagos) 
 	{
 		this.email = email;
 		this.numTarjetaCredito = numTarjetaCredito;
-		this.sistemaAutorizacion = sistemaAutorizacion;
-		this.pasarelaDePago = pasarelaDePago;
 		this.aeroPreder = aeroPreder;
 		Listpagos = listpagos;
 	}
@@ -49,22 +44,6 @@ public class clsUsuarioDTO implements Serializable
 
 	public void setNumTarjetaCredito(String numTarjetaCredito) {
 		this.numTarjetaCredito = numTarjetaCredito;
-	}
-
-	public itfSistAutorizacionFacebook getSistemaAutorizacion() {
-		return sistemaAutorizacion;
-	}
-
-	public void setSistemaAutorizacion(itfSistAutorizacionFacebook sistemaAutorizacion) {
-		this.sistemaAutorizacion = sistemaAutorizacion;
-	}
-
-	public itfPasarela getPasarelaDePago() {
-		return pasarelaDePago;
-	}
-
-	public void setPasarelaDePago(itfPasarela pasarelaDePago) {
-		this.pasarelaDePago = pasarelaDePago;
 	}
 
 	public clsAeropuerto getAeroPreder() {
