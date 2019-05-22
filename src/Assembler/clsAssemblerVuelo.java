@@ -3,9 +3,11 @@ package Assembler;
 import java.util.ArrayList;
 import java.util.List;
 
+import ObjetosDominio.clsAeropuerto;
+import ObjetosDominio.clsUsuario;
 import ObjetosDominio.clsVuelo;
 
-public class VueloAssembler 
+public class clsAssemblerVuelo 
 {
 	public static List<clsVueloDTO> assemble(ArrayList<clsVuelo> vuelos) 
 	{
@@ -20,4 +22,6 @@ public class VueloAssembler
 		
 		return vuelosDTO;
 	}
+	
+
 }
