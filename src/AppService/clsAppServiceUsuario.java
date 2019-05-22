@@ -25,7 +25,19 @@ public class clsAppServiceUsuario
 		
 		if(retorno)
 		{
-			DAO.guardarObjeto(nuevoUsuario);
+			ArrayList <clsUsuario>lUsuarios = DAO.leerTodosUsuarios();
+			
+			for(clsUsuario aux: lUsuarios)
+			{
+				if(nuevoUsuario.getEmail().equals(aux.getEmail()))
+				{
+					retorno = false;
+				}
+			}
+			if(retorno)
+			{
+				DAO.guardarObjeto(nuevoUsuario);
+			}
 		}
 		else
 		{

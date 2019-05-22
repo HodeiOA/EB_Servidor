@@ -53,7 +53,8 @@ public class clsGateway implements itfGateway
 			aux = AmericanAirlines.cargarIda(ciudadOrigen, ciudadDestino, fecha);
 			for(clsVuelo v: aux)
 			{
-				retorno.add(v);
+				clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
+				retorno.add(vueloaux);
 			}
 			
 		} catch (NumberFormatException e)
@@ -102,7 +103,8 @@ public class clsGateway implements itfGateway
 					aux = AmericanAirlines.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
 					for(clsVuelo v: aux)
 					{
-						retorno.add(v);
+						clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
+						retorno.add(vueloaux);
 					}
 				} catch (NumberFormatException e)
 				{
@@ -139,7 +141,8 @@ public class clsGateway implements itfGateway
 			
 			for(clsVuelo v: aux)
 			{
-				retorno.add(v);
+				clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
+				retorno.add(vueloaux);
 			}
 			
 			Service = "AmericanAirlines";
@@ -149,7 +152,8 @@ public class clsGateway implements itfGateway
 			aux = AmericanAirlines.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
 			for(clsVuelo v: aux)
 			{
-				retorno.add(v);
+				clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
+				retorno.add(vueloaux);
 			}
 			
 		} catch (NumberFormatException e)

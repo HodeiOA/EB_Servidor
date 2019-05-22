@@ -238,7 +238,7 @@ public class clsDAO implements itfDAO
 	{
 		
 		 Query<clsVuelo> query = pm.newQuery("UPDATE" +clsVuelo.class.getName()+" SET NUMASIENTOS= "+ vuelo.getAsientos()+" AND ASIENTOS="+vuelo.getAsientos()+" WHERE codVuelo ="+vuelo.getCodVuelo());
-		//Long number = (Long)query.execute();
+		 Long number = (Long)query.execute();
 		
 	}
 
