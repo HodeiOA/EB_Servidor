@@ -2,8 +2,6 @@ package COMUN;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-<<<<<<< HEAD
-=======
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +12,6 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 import javax.swing.text.html.ListView;
->>>>>>> e82e8d27a80d9dc49801ec6cdf932c2fe296cdce
 
 import Facade.Facade;
 import Facade.itfFacade;
@@ -27,16 +24,9 @@ import ObjetosDominio.clsVuelo;
 
 public class clsMain
 {
-<<<<<<< HEAD
-	
-	static String IP = "127.0.0.1";
-	static String Puerto = "1099";
-	static String Service = "Facebook";
-=======
 	static String IP = "127.0.0.1";
 	static String Puerto = "1099";
 	static String Service = "";
->>>>>>> e82e8d27a80d9dc49801ec6cdf932c2fe296cdce
 	
 	public static void main(String[] args)
 	{
@@ -47,11 +37,7 @@ public class clsMain
 		  String name = "//" + IP + ":" + Puerto + "/" +Service;
 		  try 
 		  {  
-<<<<<<< HEAD
-		   itfSistAutorizacionFacebook objServer = new clsFacebook();
-=======
 		   itfFacade objServer = new Facade();
->>>>>>> e82e8d27a80d9dc49801ec6cdf932c2fe296cdce
 		   Registry registry = LocateRegistry.createRegistry((Integer.valueOf(args[1])));
 		   registry.rebind(name, objServer);
 		 //Naming.rebind(name, objServer);
@@ -62,11 +48,6 @@ public class clsMain
 		   System.err.println("- Exception running the server: " + e.getMessage());
 		   e.printStackTrace();
 		  }
-<<<<<<< HEAD
-	}
-	
-=======
 
 	}
->>>>>>> e82e8d27a80d9dc49801ec6cdf932c2fe296cdce
 }

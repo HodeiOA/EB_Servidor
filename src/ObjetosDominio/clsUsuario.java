@@ -1,19 +1,5 @@
 package ObjetosDominio;
 
-<<<<<<< HEAD:src/COMUN/clsUsuario.java
-public class clsUsuario 
-{
-	private String email;
-		
-	public clsUsuario()
-	{	
-		this.email = null;
-	}
-	
-	public clsUsuario(String email)
-	{
-		this.email = email;
-=======
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -54,7 +40,6 @@ public class clsUsuario
 		this.Listpagos = Listpagos;
 		this.aeroPreder = aeroPreder;
 		this.numTarjetaCredito = numTarjetaCredito;
->>>>>>> e82e8d27a80d9dc49801ec6cdf932c2fe296cdce:src/ObjetosDominio/clsUsuario.java
 	}
 
 	//Getters y setters
@@ -63,12 +48,18 @@ public class clsUsuario
 		return email;
 	}
 
+	public String getNumTarjetaCredito() {
+		return numTarjetaCredito;
+	}
+
+	public void setNumTarjetaCredito(String numTarjetaCredito) {
+		this.numTarjetaCredito = numTarjetaCredito;
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-<<<<<<< HEAD:src/COMUN/clsUsuario.java
-=======
 	public clsAeropuerto getAeroPreder() {
 		return aeroPreder;
 	}
@@ -86,7 +77,6 @@ public class clsUsuario
 	}
 	
 	
->>>>>>> e82e8d27a80d9dc49801ec6cdf932c2fe296cdce:src/ObjetosDominio/clsUsuario.java
 	//HashCode e equals
 	@Override
 	public int hashCode() 
