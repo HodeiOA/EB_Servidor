@@ -1,46 +1,17 @@
 package COMUN;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
-import javax.jdo.annotations.Join;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
-
-@PersistenceCapable
 public class clsUsuario 
 {
-	 @PrimaryKey
 	private String email;
-	private String numTarjetaCredito;
-	private itfSistAutorizacion sistemaAutorizacion;
-	private itfPasarela pasarelaDePago;
-	private clsAeropuerto aeroPreder;
-	//Usuario es el atributo de tipo clsUsuario en Pago
-	@Join
-	@Persistent(mappedBy="usuario", dependentElement="true")
-	private HashSet <clsPago> Listpagos;
-	
+		
 	public clsUsuario()
 	{	
 		this.email = null;
-		this.Listpagos = new HashSet<clsPago>();
-		this.sistemaAutorizacion = null;
-		this.pasarelaDePago = null;
-		this.aeroPreder = null;	
-		this.numTarjetaCredito = null;
 	}
 	
-	public clsUsuario(String email,itfSistAutorizacion sistemaAutorizacion, itfPasarela pasarelaDePago, clsAeropuerto aeroPreder,  HashSet <clsPago> Listpagos, String numTarjetaCredito)
+	public clsUsuario(String email)
 	{
 		this.email = email;
-		this.Listpagos =Listpagos;
-		this.sistemaAutorizacion = sistemaAutorizacion;
-		this.pasarelaDePago = pasarelaDePago;
-		this.aeroPreder = aeroPreder;
-		this.numTarjetaCredito = numTarjetaCredito;
 	}
 
 	//Getters y setters
@@ -49,51 +20,10 @@ public class clsUsuario
 		return email;
 	}
 
-	public String getNumTarjetaCredito() {
-		return numTarjetaCredito;
-	}
-
-	public void setNumTarjetaCredito(String numTarjetaCredito) {
-		this.numTarjetaCredito = numTarjetaCredito;
-	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public itfSistAutorizacion getSistemaAutorizacion() {
-		return sistemaAutorizacion;
-	}
-
-	public void setSistemaAutorizacion(itfSistAutorizacion sistemaAutorizacion) {
-		this.sistemaAutorizacion = sistemaAutorizacion;
-	}
-
-	public itfPasarela getPasarelaDePago() {
-		return pasarelaDePago;
-	}
-
-	public void setPasarelaDePago(itfPasarela pasarelaDePago) {
-		this.pasarelaDePago = pasarelaDePago;
-	}
-
-	public clsAeropuerto getAeroPreder() {
-		return aeroPreder;
-	}
-
-	public void setAeroPreder(clsAeropuerto aeroPreder) {
-		this.aeroPreder = aeroPreder;
-	}
-	
-	public HashSet<clsPago> getListpagos() {
-		return Listpagos;
-	}
-
-	public void setListpagos(HashSet<clsPago> listpagos) {
-		Listpagos = listpagos;
-	}
-	
-	
 	//HashCode e equals
 	@Override
 	public int hashCode() 
