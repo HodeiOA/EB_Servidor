@@ -7,7 +7,7 @@ import ObjetosDominio.clsUsuario;
 
 public class clsAssemblerUsuario 
 {
-	public static List<clsUsuarioDTO> assemble(ArrayList<clsUsuario> usuarios) 
+	public static List<clsUsuarioDTO> assembleToUsuarioDTO(ArrayList<clsUsuario> usuarios) 
 	{
 		List<clsUsuarioDTO> usuariosDTO = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class clsAssemblerUsuario
 		return usuariosDTO;
 	}
 	
-	public static clsUsuarioDTO assemble(clsUsuario usuario) 
+	public static clsUsuarioDTO assembleToUsuarioDTO(clsUsuario usuario) 
 	{
 		clsUsuarioDTO usuarioDTO = new clsUsuarioDTO();
 
@@ -30,6 +30,31 @@ public class clsAssemblerUsuario
 		System.out.println("* Assembling usuario ...");
 		
 		return usuarioDTO;
+	
+	}
+	public static List<clsUsuario> assembleToUsuario(ArrayList<clsUsuarioDTO> usuariosDTO) 
+	{
+		List<clsUsuario> usuarios = new ArrayList<>();
+
+		for (clsUsuario u : usuarios) 
+		{
+			usuarios.add(new clsUsuario(u.getEmail(),u.getAeroPreder(),u.getNumTarjetaCredito()));
+		}
+
+		System.out.println("* Assembling usuarios ...");
+		
+		return usuarios;
+	}
+	
+	public static clsUsuario assembleToUsuario(clsUsuarioDTO usuarioDTO) 
+	{
+		clsUsuario usuario = new clsUsuario();
+
+		usuario=new clsUsuario(usuario.getEmail(),usuario.getAeroPreder(),usuario.getNumTarjetaCredito());
+
+		System.out.println("* Assembling usuario ...");
+		
+		return usuario;
 	
 	}
 }

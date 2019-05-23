@@ -31,10 +31,15 @@ public class clsMain
 	
 	public static void main(String[] args)
 	{
+		
 		itfFacade objServer = null;
-		try {
+		try 
+		{
 			objServer = new Facade();
-		} catch (RemoteException e1) {
+			objServer.LeerTodosVuelosAPI();
+		} 
+		catch (RemoteException e1) 
+		{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}

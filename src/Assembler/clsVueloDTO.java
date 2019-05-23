@@ -8,13 +8,15 @@ public class clsVueloDTO implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
+	private String codVuelo;
 	private String fecha;
 	private ArrayList<Integer> Asientos;
 	private double precio;
 	private ArrayList<Integer> AsientosOcupados;
 	
-	public clsVueloDTO(String fecha,ArrayList<Integer> Asientos, double precio,  ArrayList<Integer> AsientosOcupados) 
+	public clsVueloDTO(String codVuelo, String fecha,ArrayList<Integer> Asientos, double precio,  ArrayList<Integer> AsientosOcupados) 
 	{
+		this.codVuelo=codVuelo;
 		this.fecha = fecha;
 		this.Asientos = Asientos;
 		this.precio = precio;
@@ -56,6 +58,14 @@ public class clsVueloDTO implements Serializable
 	public void addAsientoOcupado(int asiento)
 	{
 		AsientosOcupados.add(asiento);
+	}
+
+	public String getCodVuelo() {
+		return codVuelo;
+	}
+
+	public void setCodVuelo(String codVuelo) {
+		this.codVuelo = codVuelo;
 	}
 	
 }

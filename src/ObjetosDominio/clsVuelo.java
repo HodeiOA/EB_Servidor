@@ -52,6 +52,15 @@ public class clsVuelo
 		this.precio = precio;
 		this.listaReservas = listaReservas;
 	}
+	
+	public clsVuelo( ArrayList<Integer> Asientos,  ArrayList<Integer> AsientosOcupados, String codVuelo, String fecha, double precio) 
+	{
+		this.codVuelo = codVuelo;
+		this.fecha = fecha;
+		this.Asientos = Asientos;
+		this.AsientosOcupados = AsientosOcupados;
+		this.precio = precio;
+	}
 
 	public String getCodVuelo() {
 		return codVuelo;

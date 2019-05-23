@@ -33,67 +33,94 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	}
 
 	@Override
-	public boolean RegistrarUsuario(clsUsuario nuevoUsuario, boolean modo) 
+//	public boolean RegistrarUsuario(clsUsuario nuevoUsuario, boolean modo) 
+//	{
+//		//cambiar clUsuario a usuario dto
+//		
+//		//no hace falta crear DTO porque no se devuelve, solo se devuelve un boolean
+//		return appServiceUsuario.RegistrarUsuario(nuevoUsuario, modo);
+//	}
+	public boolean RegistrarUsuario(clsUsuarioDTO nuevoUsuario, boolean modo) 
 	{
-		//no hace falta crear DTO porque no se devuelve, solo se devuelve un boolean
-		return appServiceUsuario.RegistrarUsuario(nuevoUsuario, modo);
+		clsUsuario usuNormal = new clsUsuario();
+		usuNormal = clsAssemblerUsuario.assembleToUsuario(nuevoUsuario);
+		
+		return appServiceUsuario.RegistrarUsuario(usuNormal, modo);
 	}
 
 	@Override
-	public clsUsuario LoginUsuario(clsUsuario nuevoUsuario, boolean modo) 
+	public clsUsuarioDTO LoginUsuario(clsUsuarioDTO nuevoUsuario, boolean modo) 
 	{
+		clsUsuario usuNormal = new clsUsuario();
+		usuNormal = clsAssemblerUsuario.assembleToUsuario(nuevoUsuario);
+		
 		clsUsuario usuarioRet = new clsUsuario();
-		usuarioRet = appServiceUsuario.LoginUsuario(nuevoUsuario, modo);
+		usuarioRet = appServiceUsuario.LoginUsuario(usuNormal, modo);
 		
 		clsUsuarioDTO usuDTO = new clsUsuarioDTO();
-		usuDTO =clsAssemblerUsuario.assemble(usuarioRet);
-		return usuarioRet;
+		usuDTO =clsAssemblerUsuario.assembleToUsuarioDTO(usuarioRet);
+		
+		return usuDTO;
 	}
 
 	@Override
-	public List<clsVueloDTO> BuscarVueloIda(clsAeropuerto aeropuertoPred, String fecha, String ciudadOrigen,
+	public List<clsVueloDTO> BuscarVueloIda(clsAeropuertoDTO aeropuertoPred, String fecha, String ciudadOrigen,
 			String ciudadDestino) 
 	{
+		clsAeropuerto aeroNormal = new clsAeropuerto();
+		aeroNormal = clsAssemblerAeropuerto.assembleToAeropuerto(aeropuertoPred);
+		
 		ArrayList<clsVuelo> vuelosIda = new ArrayList();
-		vuelosIda = appServiceVuelo.BuscarVueloIda(aeropuertoPred, fecha, ciudadOrigen, ciudadDestino);
+		vuelosIda = appServiceVuelo.BuscarVueloIda(aeroNormal, fecha, ciudadOrigen, ciudadDestino);
 		
 		List<clsVueloDTO> vuelos = new ArrayList<>();
-		vuelos = clsAssemblerVuelo.assemble(vuelosIda);
+		vuelos = clsAssemblerVuelo.assembleToVueloDTO(vuelosIda);
 
 		return vuelos;
 	}
 
 	@Override
-	public List<clsVueloDTO> BuscarVueloIdayVuelta(clsAeropuerto aeropuertoPred, String fechaIda, String fechaVuelta,
+	public List<clsVueloDTO> BuscarVueloIdayVuelta(clsAeropuertoDTO aeropuertoPred, String fechaIda, String fechaVuelta,
 			String ciudadOrigen, String ciudadDestino) 
 	{
+		clsAeropuerto aeroNormal = new clsAeropuerto();
+		aeroNormal = clsAssemblerAeropuerto.assembleToAeropuerto(aeropuertoPred);
+		
 		ArrayList<clsVuelo> vuelosIdaYVuelta = new ArrayList();
-		vuelosIdaYVuelta = appServiceVuelo.BuscarVueloIdayVuelta(aeropuertoPred, fechaIda, fechaVuelta, ciudadOrigen, ciudadDestino);
+		vuelosIdaYVuelta = appServiceVuelo.BuscarVueloIdayVuelta(aeroNormal, fechaIda, fechaVuelta, ciudadOrigen, ciudadDestino);
 		
 		List<clsVueloDTO> vuelos = new ArrayList<>();
-		vuelos = clsAssemblerVuelo.assemble(vuelosIdaYVuelta);
+		vuelos = clsAssemblerVuelo.assembleToVueloDTO(vuelosIdaYVuelta);
 
 		return vuelos;
 	}
 
 	@Override
-	public List<clsVueloDTO> BuscarVueloCualquierMomento(clsAeropuerto aeropuesrtoPred, String ciudadOrigen,
+	public List<clsVueloDTO> BuscarVueloCualquierMomento(clsAeropuertoDTO aeropuertoPred, String ciudadOrigen,
 			String ciudadDestino) 
 	{
+		clsAeropuerto aeroNormal = new clsAeropuerto();
+		aeroNormal = clsAssemblerAeropuerto.assembleToAeropuerto(aeropuertoPred);
+		
 		ArrayList<clsVuelo> vuelosCualquierMomento = new ArrayList();
-		vuelosCualquierMomento = appServiceVuelo.BuscarVueloCualquierMomento(aeropuesrtoPred, ciudadOrigen, ciudadDestino);
+		vuelosCualquierMomento = appServiceVuelo.BuscarVueloCualquierMomento(aeroNormal, ciudadOrigen, ciudadDestino);
 		
 		List<clsVueloDTO> vuelos = new ArrayList<>();
-		vuelos = clsAssemblerVuelo.assemble(vuelosCualquierMomento);
+		vuelos = clsAssemblerVuelo.assembleToVueloDTO(vuelosCualquierMomento);
 
 		return vuelos;
 	}
 
 	@Override
-	public boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero, boolean pasarela)
+	public boolean RealizarPagoyReserva (clsUsuarioDTO usuario, clsVueloDTO vuelo, int numAsiento, String nomViajero, boolean pasarela)
 	{
-		//no necesito DTO de esto xq se devuelve boolean
-		return appServiceVuelo.RealizarPagoyReserva(usuario, vuelo, numAsiento, nomViajero, pasarela);
+		clsUsuario usuNormal = new clsUsuario();
+		usuNormal = clsAssemblerUsuario.assembleToUsuario(usuario);
+		
+		clsVuelo vueloNormal = new clsVuelo();
+		vueloNormal = clsAssemblerVuelo.assembleToVuelo(vuelo);
+		
+		return appServiceVuelo.RealizarPagoyReserva(usuNormal, vueloNormal, numAsiento, nomViajero, pasarela);
 	}
 
 	@Override
@@ -103,7 +130,7 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 		listaAerop = appServiceUsuario.getAeropuertos();
 		
 		List<clsAeropuertoDTO> aeropRet = new ArrayList<>();
-		aeropRet = clsAssemblerAeropuerto.assemble(listaAerop);
+		aeropRet = clsAssemblerAeropuerto.assembleToAeropuertoDTO(listaAerop);
 		return aeropRet;
 	}
 

@@ -7,7 +7,7 @@ import ObjetosDominio.clsAeropuerto;
 
 public class clsAssemblerAeropuerto 
 {
-	public static List<clsAeropuertoDTO> assemble(ArrayList<clsAeropuerto> aeropuertos) 
+	public static List<clsAeropuertoDTO> assembleToAeropuertoDTO(ArrayList<clsAeropuerto> aeropuertos) 
 	{
 		List<clsAeropuertoDTO> aeropuertosDTO = new ArrayList<>();
 
@@ -19,5 +19,26 @@ public class clsAssemblerAeropuerto
 		System.out.println("* Assembling aeropuertos ...");
 		
 		return aeropuertosDTO;
+	}
+	
+	public static List<clsAeropuerto> assembleToAeropuerto(ArrayList<clsAeropuertoDTO> aeropuertosDTO) 
+	{
+		List<clsAeropuerto> aeropuertos = new ArrayList<>();
+
+		for (clsAeropuertoDTO a : aeropuertosDTO) 
+		{
+			aeropuertos.add(new clsAeropuerto(a.getCodAeropuerto(),a.getCiudad(),a.getPais()));
+		}
+		System.out.println("* Assembling aeropuertos ...");
+		
+		return aeropuertos;
+	}
+	public static clsAeropuerto assembleToAeropuerto(clsAeropuertoDTO aeropuertoDTO) 
+	{
+		clsAeropuerto aeropuerto = new clsAeropuerto();
+
+		aeropuerto=new clsAeropuerto(aeropuerto.getCodAeropuerto(),aeropuerto.getCiudad(),aeropuerto.getPais());
+		
+		return aeropuerto;
 	}
 }

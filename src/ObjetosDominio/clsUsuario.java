@@ -41,6 +41,13 @@ public class clsUsuario
 		this.aeroPreder = aeroPreder;
 		this.numTarjetaCredito = numTarjetaCredito;
 	}
+	
+	public clsUsuario(String email, clsAeropuerto aeroPreder, String numTarjetaCredito)
+	{
+		this.email = email;
+		this.aeroPreder = aeroPreder;
+		this.numTarjetaCredito = numTarjetaCredito;
+	}
 
 	//Getters y setters
 	
