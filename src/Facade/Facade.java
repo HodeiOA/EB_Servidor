@@ -113,5 +113,9 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 		
 		appServiceVuelo.leerTodosVuelosAPI();
 	}
-
+	
+	public void cerrarConexion()
+	{
+		appServiceUsuario.cerrarConexion();
+	}
 }

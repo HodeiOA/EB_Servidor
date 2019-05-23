@@ -80,4 +80,9 @@ public class clsAppServiceUsuario
 		ArrayList <clsAeropuerto> retorno = DAO.leerTodosAeropuertos();
 		return retorno;
 	}
+	
+	public void cerrarConexion()
+	{
+		DAO.cerrarConexion();
+	}
 }

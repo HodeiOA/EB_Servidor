@@ -1,5 +1,6 @@
 package COMUN;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.Date;
@@ -30,6 +31,13 @@ public class clsMain
 	
 	public static void main(String[] args)
 	{
+		itfFacade objServer = null;
+		try {
+			objServer = new Facade();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (System.getSecurityManager() == null)
 		  {
 		   System.setSecurityManager(new SecurityManager());
@@ -37,7 +45,7 @@ public class clsMain
 		  String name = "//" + IP + ":" + Puerto + "/" +Service;
 		  try 
 		  {  
-		   itfFacade objServer = new Facade();
+		   objServer = new Facade();
 		   Registry registry = LocateRegistry.createRegistry((Integer.valueOf(args[1])));
 		   registry.rebind(name, objServer);
 		 //Naming.rebind(name, objServer);
@@ -48,6 +56,7 @@ public class clsMain
 		   System.err.println("- Exception running the server: " + e.getMessage());
 		   e.printStackTrace();
 		  }
-
+		  objServer.cerrarConexion();
+		  
 	}
 }
