@@ -108,10 +108,10 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	}
 
 	@Override
-	public List<clsVueloDTO> LeerTodosVuelosAPI() 
+	public void LeerTodosVuelosAPI() 
 	{
 		
-		return appServiceVuelo.leerTodosVuelosAPI();
+		appServiceVuelo.leerTodosVuelosAPI();
 	}
 
 }
