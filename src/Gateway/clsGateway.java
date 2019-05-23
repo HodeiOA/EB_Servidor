@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import APIs.itfCargaVuelosAmericanAirlines;
 import APIs.itfCargaVuelosIberia;
 import APIs.itfCargaVuelosLufthansa;
-import APIs.itfPasarela;
 import APIs.itfPasarelaPaypal;
 import APIs.itfPasarelaVisa;
 import APIs.itfSistAutorizacionFacebook;

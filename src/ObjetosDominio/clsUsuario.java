@@ -10,7 +10,6 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import APIs.itfPasarela;
 import APIs.itfSistAutorizacionFacebook;
 
 @PersistenceCapable
@@ -24,12 +23,12 @@ public class clsUsuario
 	private clsAeropuerto aeroPreder;
 	
 	@Persistent(mappedBy="usuario")
-	private ArrayList<clsReserva> Listpagos;
+	private ArrayList<clsReserva> ListReservas;
 	
 	public clsUsuario()
 	{	
 		this.email = null;
-		this.Listpagos = new ArrayList<clsReserva>();
+		this.ListReservas = new ArrayList<clsReserva>();
 		this.aeroPreder = null;	
 		this.numTarjetaCredito = null;
 	}
@@ -37,7 +36,7 @@ public class clsUsuario
 	public clsUsuario(String email, clsAeropuerto aeroPreder,  ArrayList<clsReserva> Listpagos, String numTarjetaCredito)
 	{
 		this.email = email;
-		this.Listpagos = Listpagos;
+		this.ListReservas = Listpagos;
 		this.aeroPreder = aeroPreder;
 		this.numTarjetaCredito = numTarjetaCredito;
 	}
@@ -49,6 +48,10 @@ public class clsUsuario
 		this.numTarjetaCredito = numTarjetaCredito;
 	}
 
+	public void addReserva(clsReserva reserva) 
+	{
+		ListReservas.add(reserva);
+	}
 	//Getters y setters
 	
 	public String getEmail() {
@@ -75,12 +78,12 @@ public class clsUsuario
 		this.aeroPreder = aeroPreder;
 	}
 	
-	public ArrayList<clsReserva> getListpagos() {
-		return Listpagos;
+	public ArrayList<clsReserva> getListReservas() {
+		return ListReservas;
 	}
 
-	public void setListpagos(ArrayList<clsReserva> listpagos) {
-		Listpagos = listpagos;
+	public void setListReservas(ArrayList<clsReserva> ListReservas) {
+		this.ListReservas = ListReservas;
 	}
 	
 	

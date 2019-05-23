@@ -3,7 +3,6 @@ package AppService;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import APIs.itfPasarela;
 import DAO.clsDAO;
 import DAO.itfDAO;
 import Gateway.clsGateway;
@@ -137,6 +136,19 @@ public class clsAppServiceVuelo
 				DAO.guardarObjeto(reserva);
 				clsPago pagorealizado = new clsPago(reserva);
 				DAO.guardarObjeto(pagorealizado);
+				
+				//El usuario se ha validado
+				ArrayList <clsUsuario> lUsuarios = DAO.leerTodosUsuarios();
+				clsUsuario u;
+				for(clsUsuario aux: lUsuarios)
+				{
+					if(usuario.getEmail().equals(aux.getEmail()))
+					{
+						u = aux;
+					}
+				}
+				usuario.addReserva(reserva);
+				//UPDATE de DAO de usuario
 				vuelo.addAsientoOcupado(numAsiento);
 				vuelo.ReservaAsiento(numAsiento);
 				DAO.ActualizarVuelo(vuelo);
