@@ -15,14 +15,12 @@ public class clsUsuarioDTO implements Serializable
 	private String email;
 	private String numTarjetaCredito;
 	private clsAeropuerto aeroPreder;
-	private ArrayList<clsReserva> Listpagos;
 	
-	public clsUsuarioDTO(String email, String numTarjetaCredito, clsAeropuerto aeroPreder, ArrayList<clsReserva> listpagos) 
+	public clsUsuarioDTO(String email, String numTarjetaCredito, clsAeropuerto aeroPreder) 
 	{
 		this.email = email;
 		this.numTarjetaCredito = numTarjetaCredito;
 		this.aeroPreder = aeroPreder;
-		Listpagos = listpagos;
 	}
 
 	public clsUsuarioDTO() 
@@ -52,14 +50,6 @@ public class clsUsuarioDTO implements Serializable
 
 	public void setAeroPreder(clsAeropuerto aeroPreder) {
 		this.aeroPreder = aeroPreder;
-	}
-
-	public ArrayList<clsReserva> getListpagos() {
-		return Listpagos;
-	}
-
-	public void setListpagos(ArrayList<clsReserva> listpagos) {
-		Listpagos = listpagos;
 	}
 
 	public static long getSerialversionuid() {

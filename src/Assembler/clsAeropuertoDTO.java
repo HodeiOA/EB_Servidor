@@ -12,19 +12,12 @@ public class clsAeropuertoDTO implements Serializable
 	private String codAeropuerto;
 	private String ciudad;
 	private String pais;
-	private ArrayList<clsUsuario> lUsuarios;
-	private ArrayList<clsVuelo> lSalidas;
-	private ArrayList<clsVuelo> lLLegadas;
-	
-	public clsAeropuertoDTO(String codAeropuerto, String ciudad, String pais, ArrayList<clsUsuario> lUsuarios,
-			ArrayList<clsVuelo> lSalidas, ArrayList<clsVuelo> lLLegadas) 
+
+	public clsAeropuertoDTO(String codAeropuerto, String ciudad, String pais) 
 	{
 		this.codAeropuerto = codAeropuerto;
 		this.ciudad = ciudad;
 		this.pais = pais;
-		this.lUsuarios = lUsuarios;
-		this.lSalidas = lSalidas;
-		this.lLLegadas = lLLegadas;
 	}
 	
 	public String getCodAeropuerto() {
@@ -44,25 +37,6 @@ public class clsAeropuertoDTO implements Serializable
 	}
 	public void setPais(String pais) {
 		this.pais = pais;
-	}
-	public ArrayList<clsUsuario> getlUsuarios() {
-		return lUsuarios;
-	}
-	public void setlUsuarios(ArrayList<clsUsuario> lUsuarios) {
-		this.lUsuarios = lUsuarios;
-	}
-	public ArrayList<clsVuelo> getlSalidas() {
-		return lSalidas;
-	}
-	public void setlSalidas(ArrayList<clsVuelo> lSalidas) {
-		this.lSalidas = lSalidas;
-	}
-	public ArrayList<clsVuelo> getlLLegadas() {
-		return lLLegadas;
-	}
-	public void setlLLegadas(ArrayList<clsVuelo> lLLegadas) {
-		this.lLLegadas = lLLegadas;
-	}
-	
+	}	
 	
 }

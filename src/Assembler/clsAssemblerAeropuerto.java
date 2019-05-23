@@ -13,7 +13,7 @@ public class clsAssemblerAeropuerto
 
 		for (clsAeropuerto a : aeropuertos) 
 		{
-			aeropuertosDTO.add(new clsAeropuertoDTO(a.getCodAeropuerto(),a.getCiudad(),a.getPais(),a.getlUsuarios(),a.getlSalidas(),a.getlLLegadas()));
+			aeropuertosDTO.add(new clsAeropuertoDTO(a.getCodAeropuerto(),a.getCiudad(),a.getPais()));
 		}
 //,ArrayList<clsVuelo> lSalidas, ArrayList<clsVuelo> lLLegadas
 		System.out.println("* Assembling aeropuertos ...");
