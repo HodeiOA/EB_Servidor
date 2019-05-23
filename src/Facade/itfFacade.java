@@ -13,11 +13,12 @@ import ObjetosDominio.clsVuelo;
 
 public interface itfFacade extends Remote
 {
-	boolean RegistrarUsuario (clsUsuario nuevoUsuario, boolean modo)  throws RemoteException;
-	clsUsuario LoginUsuario (clsUsuario nuevoUsuario, boolean modo)  throws RemoteException;
+	public boolean RegistrarUsuario (clsUsuario nuevoUsuario, boolean modo)  throws RemoteException;
+	public clsUsuario LoginUsuario (clsUsuario nuevoUsuario, boolean modo)  throws RemoteException;
 	public List<clsAeropuertoDTO>getListaAeropuertos();
 	public List<clsVueloDTO> BuscarVueloIda (clsAeropuerto aeropuesrtoPred, String fecha, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
 	public List<clsVueloDTO>BuscarVueloIdayVuelta (clsAeropuerto aeropuesrtoPred, String fechaIda, String fechaVuelta, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
 	public List<clsVueloDTO>BuscarVueloCualquierMomento (clsAeropuerto aeropuesrtoPred, String ciudadOrigen, String ciudadDestino)  throws RemoteException;
-	boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero, boolean pasarela)  throws RemoteException;
+	public boolean RealizarPagoyReserva (clsUsuario usuario, clsVuelo vuelo, int numAsiento, String nomViajero, boolean pasarela)  throws RemoteException;
+	public List<clsVueloDTO> LeerTodosVuelosAPI();
 }

@@ -107,4 +107,11 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 		return aeropRet;
 	}
 
+	@Override
+	public List<clsVueloDTO> LeerTodosVuelosAPI() 
+	{
+		
+		return appServiceVuelo.leerTodosVuelosAPI();
+	}
+
 }
