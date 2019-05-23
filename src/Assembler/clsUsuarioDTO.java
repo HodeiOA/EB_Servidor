@@ -3,7 +3,6 @@ package Assembler;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import APIs.itfPasarela;
 import APIs.itfSistAutorizacionFacebook;
 import ObjetosDominio.clsAeropuerto;
 import ObjetosDominio.clsReserva;

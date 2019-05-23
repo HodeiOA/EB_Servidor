@@ -148,7 +148,7 @@ public class clsAppServiceVuelo
 					}
 				}
 				usuario.addReserva(reserva);
-				//UPDATE de DAO de usuario
+				DAO.ActualizarUsuario(usuario);
 				vuelo.addAsientoOcupado(numAsiento);
 				vuelo.ReservaAsiento(numAsiento);
 				DAO.ActualizarVuelo(vuelo);

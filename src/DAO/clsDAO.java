@@ -252,4 +252,11 @@ public class clsDAO implements itfDAO
 		
 	}
 
+	@Override
+	public void ActualizarUsuario(clsUsuario usuario) {
+		 Query<clsUsuario> query = pm.newQuery("UPDATE" +clsUsuario.class.getName()+" SET LISTARESERVAS= "+usuario.getListReservas()+" WHERE EMAIL ="+usuario.getEmail());
+		 Long number = (Long)query.execute();
+		
+	}
+
 }

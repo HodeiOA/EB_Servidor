@@ -20,6 +20,7 @@ public interface itfDAO
 	public ArrayList<clsReserva> leerTodasReservas();
 	public ArrayList<clsPago> leerTodosPagos();
 	public void ActualizarVuelo (clsVuelo vuelo);
+	public void ActualizarUsuario (clsUsuario usuario);
 	public void cerrarConexion ();
 
 }
