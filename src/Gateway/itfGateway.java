@@ -11,5 +11,5 @@ public interface itfGateway
 	public ArrayList <clsVuelo> cargarCualquierMomento(String ciudadOrigen, String ciudadDestino);
 	public boolean ValidarUsuario (String email, boolean modo);
 	public boolean RealizarPago (String numTarjetaCredito, boolean modo);
-
+	public ArrayList <clsVuelo> cargarTodos();
 }

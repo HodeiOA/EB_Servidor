@@ -262,4 +262,49 @@ public class clsGateway implements itfGateway
 		}	
 		return retorno;	
 	}
+
+	@Override
+	public ArrayList<clsVuelo> cargarTodos() {
+		
+		ArrayList <clsVuelo> retorno = new ArrayList <clsVuelo> ();
+		ArrayList <clsVuelo> aux = new ArrayList <clsVuelo> ();
+		Service = "iberia";
+		Registry registryIberia;
+		try {
+			registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+		
+		String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
+		itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
+		retorno = iberia.cargarTodos();
+		
+		Service = "lufthansa";
+		Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+		String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
+		itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
+		aux = iberia.cargarTodos();
+		
+		for(clsVuelo v: aux)
+		{
+			retorno.add(v);
+		}
+		
+		Service = "AmericanAirlines";
+		Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
+		String nameAmericanAirlines =  "//" + IP + ":" +Puerto + "/" + Service;
+		itfCargaVuelosAmericanAirlines AmericanAirlines = (itfCargaVuelosAmericanAirlines)registryLufthansa.lookup(nameAmericanAirlines);
+		aux = AmericanAirlines.cargarTodos();
+		for(clsVuelo v: aux)
+		{
+			clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
+			retorno.add(vueloaux);
+		}
+		} catch (NumberFormatException | RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retorno;
+	}
 }

@@ -144,4 +144,9 @@ public class clsAppServiceVuelo
 	
 		return pago;		
 	}
+	public ArrayList <clsVuelo> leerTodosVuelosAPI()
+	{
+		ArrayList <clsVuelo> todos = gateway.cargarTodos();
+		return todos;
+	}
 }
