@@ -30,6 +30,8 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	public Facade() throws RemoteException 
 	{
 		super();
+		appServiceUsuario = new clsAppServiceUsuario();
+		appServiceVuelo = new clsAppServiceVuelo();
 	}
 
 	@Override

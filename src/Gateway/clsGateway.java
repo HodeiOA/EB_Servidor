@@ -18,7 +18,7 @@ import ObjetosDominio.clsVuelo;
 public class clsGateway implements itfGateway
 {
 	static String IP = "127.0.0.1";
-	static String Puerto = "1099";
+	static String Puerto = "";
 	static String Service = "";
 	
 	public ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, String fecha)
@@ -28,12 +28,14 @@ public class clsGateway implements itfGateway
 		//Cargamos los vuelos de cada aerolínea
 		
 		try {
+			Puerto = "1090";
 			Service = "iberia";
 			Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
 			retorno = iberia.cargarIda(ciudadOrigen, ciudadDestino, fecha);
 			
+			Puerto = "1091";
 			Service = "lufthansa";
 			Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
@@ -45,6 +47,7 @@ public class clsGateway implements itfGateway
 				retorno.add(v);
 			}
 			
+			Puerto = "1092";
 			Service = "AmericanAirlines";
 			Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameAmericanAirlines =  "//" + IP + ":" +Puerto + "/" + Service;
@@ -79,12 +82,14 @@ public class clsGateway implements itfGateway
 		//Cargamos los vuelos de cada aerolínea
 		String args[] = null;
 				try {
+					Puerto = "1090";
 					Service = "iberia";
 					Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 					String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 					itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
 					retorno = iberia.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
 					
+					Puerto = "1091";
 					Service = "Lufthansa";
 					Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 					String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
@@ -95,6 +100,8 @@ public class clsGateway implements itfGateway
 					{
 						retorno.add(v);
 					}
+					
+					Puerto = "1092";
 					Service = "AmericanAirlines";
 					Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 					String nameAmericanAirlines = "//" + IP + ":" +Puerto + "/" + Service;
@@ -126,13 +133,15 @@ public class clsGateway implements itfGateway
 		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
 		//Cargamos los vuelos de cada aerolínea
 		try {
+			Puerto = "1090";
 			Service = "iberia";
 			Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
 			retorno = iberia.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
 			
-			Service = "Lufthansa";
+			Puerto = "1091";
+			Service = "lufthansa";
 			Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameLufthansa ="//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
@@ -144,6 +153,7 @@ public class clsGateway implements itfGateway
 				retorno.add(vueloaux);
 			}
 			
+			Puerto = "1092";
 			Service = "AmericanAirlines";
 			Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameAmericanAirlines = "//" + IP + ":" +Puerto + "/" + Service;
@@ -178,7 +188,8 @@ public class clsGateway implements itfGateway
 			Registry registry;
 			try 
 			{
-				Service = "Fcebook";
+				Puerto = "1093";
+				Service = "Facebook";
 				registry = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 				String name ="//" + IP + ":" +Puerto + "/" + Service;
 				itfSistAutorizacionFacebook facebook  = (itfSistAutorizacionFacebook)registry.lookup(name);
@@ -199,6 +210,7 @@ public class clsGateway implements itfGateway
 		{
 			try 
 			{
+				Puerto = "1094";
 				Service = "Google";
 				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 				String name = "//" + IP + ":" +Puerto + "/" + Service;
@@ -224,6 +236,7 @@ public class clsGateway implements itfGateway
 		if(modo)
 		{
 			try{
+				Puerto = "1095";
 				Service = "Visa";
 				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 				String name =  "//" + IP + ":" +Puerto + "/" + Service;
@@ -242,7 +255,8 @@ public class clsGateway implements itfGateway
 		}
 		else
 		{
-			try{	
+			try{
+				Puerto = "1096";
 				Service = "PayPal";
 				Registry registry = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 				String name = "//" + IP + ":" +Puerto + "/" + Service;
@@ -267,6 +281,7 @@ public class clsGateway implements itfGateway
 		
 		ArrayList <clsVuelo> retorno = new ArrayList <clsVuelo> ();
 		ArrayList <clsVuelo> aux = new ArrayList <clsVuelo> ();
+		Puerto = "1090";
 		Service = "iberia";
 		Registry registryIberia;
 		try {
@@ -276,6 +291,7 @@ public class clsGateway implements itfGateway
 		itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
 		retorno = iberia.cargarTodos();
 		
+		Puerto = "1091";
 		Service = "lufthansa";
 		Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 		String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
@@ -287,6 +303,7 @@ public class clsGateway implements itfGateway
 			retorno.add(v);
 		}
 		
+		Puerto = "1092";
 		Service = "AmericanAirlines";
 		Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 		String nameAmericanAirlines =  "//" + IP + ":" +Puerto + "/" + Service;

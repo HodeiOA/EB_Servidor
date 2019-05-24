@@ -27,7 +27,7 @@ public class clsMain
 {
 	static String IP = "127.0.0.1";
 	static String Puerto = "1099";
-	static String Service = "";
+	static String Service = "EasyBooking";
 	
 	public static void main(String[] args)
 	{
@@ -36,7 +36,7 @@ public class clsMain
 		try 
 		{
 			objServer = new Facade();
-			objServer.LeerTodosVuelosAPI();
+//			objServer.LeerTodosVuelosAPI();
 		} 
 		catch (RemoteException e1) 
 		{
@@ -50,8 +50,7 @@ public class clsMain
 		  String name = "//" + IP + ":" + Puerto + "/" +Service;
 		  try 
 		  {  
-		   objServer = new Facade();
-		   Registry registry = LocateRegistry.createRegistry((Integer.valueOf(args[1])));
+		   Registry registry = LocateRegistry.createRegistry((Integer.valueOf(Puerto)));
 		   registry.rebind(name, objServer);
 		 //Naming.rebind(name, objServer);
 		   System.out.println("* Server '" + name + "' active and waiting...");
@@ -61,7 +60,12 @@ public class clsMain
 		   System.err.println("- Exception running the server: " + e.getMessage());
 		   e.printStackTrace();
 		  }
-		  objServer.cerrarConexion();
+		  try {
+			objServer.cerrarConexion();
+		} catch (RemoteException e)
+		  {
+			e.printStackTrace();
+		}
 		  
 	}
 }
