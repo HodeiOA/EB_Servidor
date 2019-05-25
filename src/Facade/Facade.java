@@ -14,6 +14,7 @@ import Assembler.clsAssemblerUsuario;
 import Assembler.clsAssemblerVuelo;
 import Assembler.clsUsuarioDTO;
 import Assembler.clsVueloDTO;
+import ObjetosDominio.clsAerolinea;
 import ObjetosDominio.clsAeropuerto;
 import ObjetosDominio.clsUsuario;
 import ObjetosDominio.clsVuelo;
@@ -137,14 +138,21 @@ public class Facade extends UnicastRemoteObject implements itfFacade
 	}
 
 	@Override
-	public void LeerTodosVuelosAPI() 
+	public List <clsVuelo> LeerTodosVuelosAPI() 
 	{
-		
-		appServiceVuelo.leerTodosVuelosAPI();
+		ArrayList<clsVuelo> vuelos = new ArrayList<clsVuelo> ();
+		vuelos=appServiceVuelo.leerTodosVuelosAPI();
+		return vuelos;
 	}
 	
 	public void cerrarConexion()
 	{
 		appServiceUsuario.cerrarConexion();
+	}
+
+	@Override
+	public void EscribirTodasAerolineas(List<clsAerolinea> aerolineas) throws RemoteException {
+		appServiceVuelo.EscribirTodasAerolineas(aerolineas);
+		
 	}
 }

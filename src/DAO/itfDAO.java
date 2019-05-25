@@ -22,5 +22,6 @@ public interface itfDAO
 	public void ActualizarVuelo (clsVuelo vuelo);
 	public void ActualizarUsuario (clsUsuario usuario);
 	public void cerrarConexion ();
+	public void ActualizarAerolinea(clsAerolinea aerolinea);
 
 }

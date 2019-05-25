@@ -12,6 +12,7 @@ public class clsAerolinea
 	@PrimaryKey
 	private String codAerolinea;
 	private double comision;
+	private double acumulado;
 	
 	@Element(column="FK_aerolinea")
 	private ArrayList<clsVuelo> lVuelos;
@@ -20,14 +21,16 @@ public class clsAerolinea
 	{
 		this.codAerolinea = null;
 		this.comision = 0.0;
-		this.lVuelos = null;
+		this.lVuelos = null; 
+		this.acumulado = 0.0;
 	}
 	
-	public clsAerolinea(String codAerolinea, double comision) 
+	public clsAerolinea(String codAerolinea, double comision, ArrayList<clsVuelo> lVuelos, double acumulado) 
 	{
 		this.codAerolinea = codAerolinea;
 		this.comision = comision;
-		this.lVuelos = new ArrayList<clsVuelo>();
+		this.lVuelos = lVuelos;
+		this.acumulado = acumulado;
 	}
 
 	public ArrayList<clsVuelo> getlVuelos()
@@ -60,13 +63,18 @@ public class clsAerolinea
 		this.comision = comision;
 	}
 
-	double calcularComisionDebida(ArrayList<clsReserva> historicoReservas )
+	public void calcularComisionDebida(double precio)
 	{
 		double retorno = 0;
-		
-		//hacer metodo
-		
-		return retorno;
+		this.acumulado += precio*this.comision/100;
+	}
+
+	public double getAcumulado() {
+		return acumulado;
+	}
+
+	public void setAcumulado(double acumulado) {
+		this.acumulado = acumulado;
 	}
 
 	@Override

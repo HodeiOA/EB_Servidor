@@ -259,4 +259,11 @@ public class clsDAO implements itfDAO
 		
 	}
 
+	@Override
+	public void ActualizarAerolinea(clsAerolinea aerolinea) {
+		 Query<clsAerolinea> query = pm.newQuery("UPDATE" +clsAerolinea.class.getName()+" SET ACUMULADO= "+aerolinea.getAcumulado()+" WHERE CODAEROLINEA ="+aerolinea.getCodAerolinea());
+		 Long number = (Long)query.execute();
+		
+	}
+
 }

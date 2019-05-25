@@ -2,10 +2,12 @@ package AppService;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 import DAO.clsDAO;
 import DAO.itfDAO;
 import Gateway.clsGateway;
+import ObjetosDominio.clsAerolinea;
 import ObjetosDominio.clsAeropuerto;
 import ObjetosDominio.clsPago;
 import ObjetosDominio.clsReserva;
@@ -147,6 +149,16 @@ public class clsAppServiceVuelo
 						u = aux;
 					}
 				}
+				ArrayList <clsAerolinea> aerolineas = DAO.leerTodasAerolineas();
+				clsAerolinea aerolinea = new clsAerolinea();
+				for(clsAerolinea a: aerolineas)
+				{
+					if(vuelo.getCodVuelo().contains(a.getCodAerolinea()))
+					{
+						aerolinea = a;
+					}
+				}
+				aerolinea.calcularComisionDebida(vuelo.getPrecio());
 				usuario.addReserva(reserva);
 				DAO.ActualizarUsuario(usuario);
 				vuelo.addAsientoOcupado(numAsiento);
@@ -156,11 +168,21 @@ public class clsAppServiceVuelo
 	
 		return pago;		
 	}
-	public void leerTodosVuelosAPI()
+	public ArrayList <clsVuelo> leerTodosVuelosAPI()
 	{
 		ArrayList <clsVuelo> todos = gateway.cargarTodos();
 		
 		for(clsVuelo v: todos)
 			DAO.guardarObjeto(v);
+		
+		return todos;
+	}
+
+	public void EscribirTodasAerolineas(List<clsAerolinea> aerolineas) {
+		for(clsAerolinea a: aerolineas)
+		{
+			DAO.guardarObjeto(a);
+		}
+		
 	}
 }

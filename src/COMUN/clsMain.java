@@ -31,12 +31,39 @@ public class clsMain
 	
 	public static void main(String[] args)
 	{
-		
 		itfFacade objServer = null;
 		try 
 		{
 			objServer = new Facade();
-//			objServer.LeerTodosVuelosAPI();
+			ArrayList <clsVuelo> vuelos = (ArrayList<clsVuelo>) objServer.LeerTodosVuelosAPI();
+			ArrayList <clsVuelo> vuelosI = new ArrayList <clsVuelo>();
+			ArrayList <clsVuelo> vuelosL = new ArrayList <clsVuelo>();
+			ArrayList <clsVuelo> vuelosAA= new ArrayList <clsVuelo>();
+			
+			for ( clsVuelo v : vuelos)
+			{
+				if(v.getCodVuelo().contains("IB"))
+				{
+					vuelosI.add(v);
+				}
+				else if(v.getCodVuelo().contains("LUF"))
+				{
+					vuelosL.add(v);
+				}
+				else
+				{
+					vuelosAA.add(v);
+				}
+			}
+			ArrayList <clsAerolinea> aerolineas = new ArrayList<clsAerolinea>();
+			clsAerolinea iberia = new clsAerolinea ("IB",5,vuelosI,0);
+			aerolineas.add(iberia);
+			clsAerolinea lufthansa = new clsAerolinea ("LUF",10,vuelosL,0);
+			aerolineas.add(lufthansa);
+			clsAerolinea AmericanAirlines = new clsAerolinea ("AA",7.5,vuelosAA,0);
+			aerolineas.add(AmericanAirlines);
+			
+			objServer.EscribirTodasAerolineas(aerolineas);
 		} 
 		catch (RemoteException e1) 
 		{
