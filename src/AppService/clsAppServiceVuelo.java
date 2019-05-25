@@ -159,6 +159,7 @@ public class clsAppServiceVuelo
 					}
 				}
 				aerolinea.calcularComisionDebida(vuelo.getPrecio());
+				DAO.ActualizarAerolinea(aerolinea);
 				usuario.addReserva(reserva);
 				DAO.ActualizarUsuario(usuario);
 				vuelo.addAsientoOcupado(numAsiento);
