@@ -1,5 +1,6 @@
 package ObjetosDominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.jdo.annotations.Element;
@@ -7,7 +8,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class clsAerolinea 
+public class clsAerolinea implements Serializable
 {
 	@PrimaryKey
 	private String codAerolinea;

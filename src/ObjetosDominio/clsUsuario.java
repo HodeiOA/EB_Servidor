@@ -1,5 +1,6 @@
 package ObjetosDominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +14,7 @@ import javax.jdo.annotations.PrimaryKey;
 import APIs.itfSistAutorizacionFacebook;
 
 @PersistenceCapable
-public class clsUsuario 
+public class clsUsuario implements Serializable
 {
 	@PrimaryKey
 	private String email;

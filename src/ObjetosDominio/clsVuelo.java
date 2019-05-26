@@ -1,5 +1,6 @@
 package ObjetosDominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class clsVuelo
+public class clsVuelo implements Serializable
 {
 	@PrimaryKey
 	private String codVuelo;

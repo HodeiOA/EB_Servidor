@@ -1,11 +1,13 @@
 package ObjetosDominio;
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class clsPago 
+public class clsPago implements Serializable
 {
 	@PrimaryKey
 	private String codPago;
