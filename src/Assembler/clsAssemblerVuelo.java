@@ -26,7 +26,7 @@ public class clsAssemblerVuelo
 	{
 		List<clsVuelo> vuelos = new ArrayList<>();
 
-		for (clsVueloDTO v : vuelosDTO) 
+		for (clsVueloDTO v: vuelosDTO)
 		{		
 			vuelos.add(new clsVuelo(v.getAsientos(),v.getAsientosOcupados(),v.getCodVuelo(),v.getFecha(),v.getPrecio()));
 		}
@@ -39,7 +39,7 @@ public class clsAssemblerVuelo
 	{
 		clsVuelo vuelo = new clsVuelo();
 
-		vuelo=new clsVuelo(vuelo.getAsientos(),vuelo.getAsientosOcupados(),vuelo.getCodVuelo(),vuelo.getFecha(),vuelo.getPrecio());
+		vuelo = new clsVuelo(vueloDTO.getAsientos(),vueloDTO.getAsientosOcupados(),vueloDTO.getCodVuelo(),vueloDTO.getFecha(),vueloDTO.getPrecio());
 		
 
 		System.out.println("* Assembling Vuelos ...");

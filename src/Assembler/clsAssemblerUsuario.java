@@ -36,7 +36,7 @@ public class clsAssemblerUsuario
 	{
 		List<clsUsuario> usuarios = new ArrayList<>();
 
-		for (clsUsuario u : usuarios) 
+		for (clsUsuarioDTO u: usuariosDTO)
 		{
 			usuarios.add(new clsUsuario(u.getEmail(),u.getAeroPreder(),u.getNumTarjetaCredito()));
 		}
@@ -50,7 +50,7 @@ public class clsAssemblerUsuario
 	{
 		clsUsuario usuario = new clsUsuario();
 
-		usuario=new clsUsuario(usuario.getEmail(),usuario.getAeroPreder(),usuario.getNumTarjetaCredito());
+		usuario = new clsUsuario(usuarioDTO.getEmail(),usuarioDTO.getAeroPreder(),usuarioDTO.getNumTarjetaCredito());
 
 		System.out.println("* Assembling usuario ...");
 		

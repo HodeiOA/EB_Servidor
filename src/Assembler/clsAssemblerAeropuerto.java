@@ -11,11 +11,11 @@ public class clsAssemblerAeropuerto
 	{
 		List<clsAeropuertoDTO> aeropuertosDTO = new ArrayList<>();
 
-		for (clsAeropuerto a : aeropuertos) 
+		for (clsAeropuerto a: aeropuertos)
 		{
 			aeropuertosDTO.add(new clsAeropuertoDTO(a.getCodAeropuerto(),a.getCiudad(),a.getPais()));
 		}
-//,ArrayList<clsVuelo> lSalidas, ArrayList<clsVuelo> lLLegadas
+		
 		System.out.println("* Assembling aeropuertos ...");
 		
 		return aeropuertosDTO;
@@ -25,7 +25,7 @@ public class clsAssemblerAeropuerto
 	{
 		List<clsAeropuerto> aeropuertos = new ArrayList<>();
 
-		for (clsAeropuertoDTO a : aeropuertosDTO) 
+		for (clsAeropuertoDTO a: aeropuertosDTO) 
 		{
 			aeropuertos.add(new clsAeropuerto(a.getCodAeropuerto(),a.getCiudad(),a.getPais()));
 		}
@@ -37,7 +37,7 @@ public class clsAssemblerAeropuerto
 	{
 		clsAeropuerto aeropuerto = new clsAeropuerto();
 
-		aeropuerto=new clsAeropuerto(aeropuerto.getCodAeropuerto(),aeropuerto.getCiudad(),aeropuerto.getPais());
+		aeropuerto = new clsAeropuerto(aeropuertoDTO.getCodAeropuerto(), aeropuertoDTO.getCiudad(), aeropuertoDTO.getPais());
 		
 		return aeropuerto;
 	}

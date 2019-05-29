@@ -279,22 +279,22 @@ public class clsGateway implements itfGateway
 	@Override
 	public ArrayList<clsVuelo> cargarTodos() {
 		
-		ArrayList <clsVuelo> retorno = new ArrayList <clsVuelo> ();
-		ArrayList <clsVuelo> aux = new ArrayList <clsVuelo> ();
+		ArrayList<clsVuelo> retorno = new ArrayList <clsVuelo>();
+		ArrayList<clsVuelo> aux = new ArrayList <clsVuelo>();
 		Puerto = "1090";
 		Service = "iberia";
 		Registry registryIberia;
 		try {
 			registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 		
-		String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
+		String nameIberia = "//" + IP + ":" + Puerto + "/" + Service;
 		itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
 		retorno = iberia.cargarTodos();
 		
 		Puerto = "1091";
 		Service = "lufthansa";
 		Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
-		String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
+		String nameLufthansa = "//" + IP + ":" + Puerto + "/" + Service;
 		itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
 		aux = iberia.cargarTodos();
 		
