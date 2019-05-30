@@ -7,6 +7,7 @@ import ObjetosDominio.clsUsuario;
 
 public class clsAssemblerUsuario 
 {
+	public static ArrayList <clsUsuario> todosUsuarios;
 	public static List<clsUsuarioDTO> assembleToUsuarioDTO(ArrayList<clsUsuario> usuarios) 
 	{
 		List<clsUsuarioDTO> usuariosDTO = new ArrayList<>();

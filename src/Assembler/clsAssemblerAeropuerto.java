@@ -7,6 +7,8 @@ import ObjetosDominio.clsAeropuerto;
 
 public class clsAssemblerAeropuerto 
 {
+	public static ArrayList <clsAeropuerto> todosAeropuertos;
+	
 	public static List<clsAeropuertoDTO> assembleToAeropuertoDTO(ArrayList<clsAeropuerto> aeropuertos) 
 	{
 		List<clsAeropuertoDTO> aeropuertosDTO = new ArrayList<>();

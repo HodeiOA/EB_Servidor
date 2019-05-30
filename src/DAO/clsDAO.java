@@ -8,6 +8,11 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
+
+import Assembler.clsAssemblerAeropuerto;
+import Assembler.clsAssemblerUsuario;
+import Assembler.clsAssemblerVuelo;
+
 import javax.jdo.Query;
 
 
@@ -46,6 +51,18 @@ public class clsDAO implements itfDAO
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
+		}
+		if(objeto.getClass().equals(clsAeropuerto.class))
+		{
+			clsAssemblerAeropuerto.todosAeropuertos.add((clsAeropuerto)objeto);
+		}
+		else if(objeto.getClass().equals(clsUsuario.class))
+		{
+			clsAssemblerUsuario.todosUsuarios.add((clsUsuario)objeto);
+		}
+		else if (objeto.getClass().equals(clsVuelo.class))
+		{
+			clsAssemblerVuelo.todosVuelos.add((clsVuelo) objeto);
 		}
 	}
 

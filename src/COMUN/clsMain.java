@@ -14,6 +14,9 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 import javax.swing.text.html.ListView;
 
+import Assembler.clsAssemblerAeropuerto;
+import Assembler.clsAssemblerUsuario;
+import Assembler.clsAssemblerVuelo;
 import Facade.Facade;
 import Facade.itfFacade;
 import ObjetosDominio.clsAerolinea;
@@ -35,7 +38,28 @@ public class clsMain
 		try 
 		{
 			objServer = new Facade();
-			ArrayList <clsVuelo> vuelos = (ArrayList<clsVuelo>) objServer.LeerTodosVuelosAPI();
+			ArrayList <clsVuelo> vuelos = new ArrayList<clsVuelo>();
+					//(ArrayList<clsVuelo>) objServer.LeerTodosVuelosAPI();
+			clsAssemblerVuelo.todosVuelos = vuelos;
+			
+			ArrayList <clsUsuario> usuarios = new ArrayList <clsUsuario>();
+			//Leer todos los usuarios de la api
+			clsAssemblerUsuario.todosUsuarios = usuarios;
+			
+			ArrayList <clsAeropuerto> aeropuertos = new ArrayList <clsAeropuerto>();
+			for(clsVuelo v: vuelos)
+			{
+				if((aeropuertos.contains(v.getAeropuertoDestino())))
+				{
+					aeropuertos.add(v.getAeropuertoDestino());
+				}
+				if((aeropuertos.contains(v.getAeropuertoOrigen())))
+				{
+					aeropuertos.add(v.getAeropuertoOrigen());
+				}
+			}
+			clsAssemblerAeropuerto.todosAeropuertos=aeropuertos;
+			
 			ArrayList <clsVuelo> vuelosI = new ArrayList <clsVuelo>();
 			ArrayList <clsVuelo> vuelosL = new ArrayList <clsVuelo>();
 			ArrayList <clsVuelo> vuelosAA= new ArrayList <clsVuelo>();
@@ -55,6 +79,7 @@ public class clsMain
 					vuelosAA.add(v);
 				}
 			}
+			
 			ArrayList <clsAerolinea> aerolineas = new ArrayList<clsAerolinea>();
 			clsAerolinea iberia = new clsAerolinea ("IB",5,vuelosI,0);
 			aerolineas.add(iberia);
@@ -62,7 +87,6 @@ public class clsMain
 			aerolineas.add(lufthansa);
 			clsAerolinea AmericanAirlines = new clsAerolinea ("AA",7.5,vuelosAA,0);
 			aerolineas.add(AmericanAirlines);
-			
 			objServer.EscribirTodasAerolineas(aerolineas);
 		} 
 		catch (RemoteException e1) 

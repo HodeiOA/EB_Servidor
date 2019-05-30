@@ -9,6 +9,7 @@ import ObjetosDominio.clsVuelo;
 
 public class clsAssemblerVuelo 
 {
+	public static ArrayList <clsVuelo> todosVuelos;
 	public static List<clsVueloDTO> assembleToVueloDTO(ArrayList<clsVuelo> vuelos) 
 	{
 		List<clsVueloDTO> vuelosDTO = new ArrayList<>();
