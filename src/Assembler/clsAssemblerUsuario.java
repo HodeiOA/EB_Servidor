@@ -56,6 +56,30 @@ public class clsAssemblerUsuario
 		System.out.println("* Assembling usuario ...");
 		
 		return usuario;
+	}
 	
+	public static clsUsuario assembleToUsuario(String emailUsuario)
+	{
+		clsUsuario usuario = new clsUsuario();
+		
+		for (clsUsuario usu : todosUsuarios) {
+			if (usu.getEmail() == emailUsuario) {
+				usuario = usu;
+				break;
+			}
+		}
+		
+		return usuario;
+	}
+	
+	public static List<clsUsuario> assembleToUsuario(List<String> emailsUsuarios)
+	{
+		List<clsUsuario> usuarios = new ArrayList<clsUsuario>();
+		
+		for (String emailUsuario : emailsUsuarios) {
+			usuarios.add(assembleToUsuario(emailUsuario));
+		}
+		
+		return usuarios;
 	}
 }

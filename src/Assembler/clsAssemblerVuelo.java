@@ -3,6 +3,8 @@ package Assembler;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.ParseInfo;
+
 import ObjetosDominio.clsAeropuerto;
 import ObjetosDominio.clsUsuario;
 import ObjetosDominio.clsVuelo;
@@ -10,6 +12,7 @@ import ObjetosDominio.clsVuelo;
 public class clsAssemblerVuelo 
 {
 	public static ArrayList <clsVuelo> todosVuelos;
+	
 	public static List<clsVueloDTO> assembleToVueloDTO(ArrayList<clsVuelo> vuelos) 
 	{
 		List<clsVueloDTO> vuelosDTO = new ArrayList<>();
@@ -46,6 +49,53 @@ public class clsAssemblerVuelo
 		System.out.println("* Assembling Vuelos ...");
 		
 		return vuelo;
+	}
+	
+	public static clsVuelo assembleToVuelo (String stringVuelo)
+	{		
+		String[] datosVuelo = stringVuelo.split(";");
+		clsVuelo vuelo = new clsVuelo();
+		
+		vuelo.setCodVuelo(datosVuelo[0]);
+		for (clsAeropuerto aero : clsAssemblerAeropuerto.todosAeropuertos) 
+		{
+			if(aero.getCodAeropuerto()==datosVuelo[1])
+			{
+				vuelo.setAeropuertoOrigen(aero);
+				break;
+			}
+		}
+		for (clsAeropuerto aero : clsAssemblerAeropuerto.todosAeropuertos) 
+		{
+			if(aero.getCodAeropuerto()==datosVuelo[2])
+			{
+				vuelo.setAeropuertoDestino(aero);
+				break;
+			}
+		}
+		vuelo.setFecha(datosVuelo[3]);
+		vuelo.setPrecio(Double.parseDouble(datosVuelo[4]));
+		
+		ArrayList<Integer> asientos = new ArrayList<Integer>();
+		for (int i = 5; i < datosVuelo.length; i++) 
+		{
+			asientos.add(Integer.parseInt(datosVuelo[i]));
+		}
+		vuelo.setAsientos(asientos);
+		
+		return vuelo;
+	}
+	
+	public static List<clsVuelo> assembleToVuelo(List<String> datosVuelos)
+	{
+		List<clsVuelo> vuelos = new ArrayList<clsVuelo>();
+		
+		for (String string : datosVuelos) 
+		{
+			vuelos.add(assembleToVuelo(string));
+		}
+		
+		return vuelos;
 	}
 
 }

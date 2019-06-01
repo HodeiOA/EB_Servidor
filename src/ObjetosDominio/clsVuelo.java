@@ -25,7 +25,8 @@ public class clsVuelo implements Serializable
 	private ArrayList<Integer> Asientos;
 	private ArrayList<Integer> AsientosOcupados;
 	private double precio;
-	
+
+
 	@Persistent(mappedBy="vuelo")
 	private ArrayList<clsReserva> listaReservas;
 
@@ -156,5 +157,9 @@ public class clsVuelo implements Serializable
 
 	public ArrayList<Integer> getAsientos() {
 		return Asientos;
+	}
+	
+	public void setAsientos(ArrayList<Integer> asientos) {
+		Asientos = asientos;
 	}
 }

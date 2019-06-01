@@ -43,4 +43,35 @@ public class clsAssemblerAeropuerto
 		
 		return aeropuerto;
 	}
+	
+	public static clsAeropuerto assembleToAeropuerto(String stringAeropuerto) 
+	{
+		String[] datosAeropuerto = stringAeropuerto.split(";");
+		clsAeropuerto aeropuerto = new clsAeropuerto();
+
+		aeropuerto.setCodAeropuerto(datosAeropuerto[0]);
+		aeropuerto.setCiudad(datosAeropuerto[1]);
+		aeropuerto.setPais(datosAeropuerto[2]);
+		
+		for (clsAeropuerto aero: todosAeropuertos) {
+			if (aero.getCodAeropuerto() == datosAeropuerto[0]) {
+				aeropuerto.setlLLegadas(aero.getlLLegadas());				
+				aeropuerto.setlSalidas(aero.getlSalidas());
+				aeropuerto.setlUsuarios(aero.getlUsuarios());
+			}
+		}
+		
+		return aeropuerto;
+	}
+
+	public static List<clsAeropuerto> assembleToAeropuerto(List<String> datosAeropuertos)
+	{
+		List<clsAeropuerto> aeropuertos = new ArrayList<clsAeropuerto>();
+		
+		for (String datosAeropuerto : datosAeropuertos) {
+			aeropuertos.add(assembleToAeropuerto(datosAeropuerto));
+		}
+		
+		return aeropuertos;
+	}
 }
