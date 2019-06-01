@@ -13,6 +13,7 @@ import APIs.itfPasarelaPaypal;
 import APIs.itfPasarelaVisa;
 import APIs.itfSistAutorizacionFacebook;
 import APIs.itfSistAutorizacionGoogle;
+import Assembler.clsAssemblerVuelo;
 import ObjetosDominio.clsVuelo;
 
 public class clsGateway implements itfGateway
@@ -21,10 +22,10 @@ public class clsGateway implements itfGateway
 	static String Puerto = "";
 	static String Service = "";
 	
-	public ArrayList <clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, String fecha)
+	public ArrayList<clsVuelo> cargarIda(String ciudadOrigen, String  ciudadDestino, String fecha)
 	{
-		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
-		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
+		ArrayList<String> vueloToken = new ArrayList<String>();
+		ArrayList<clsVuelo> retorno = new ArrayList<clsVuelo>();
 		//Cargamos los vuelos de cada aerolínea
 		
 		try {
@@ -33,18 +34,23 @@ public class clsGateway implements itfGateway
 			Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
-			retorno = iberia.cargarIda(ciudadOrigen, ciudadDestino, fecha);
+			vueloToken = iberia.cargarIda(ciudadOrigen, ciudadDestino, fecha);
+			
+			for(String vuelo: vueloToken)
+			{
+				retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
+			}
 			
 			Puerto = "1091";
 			Service = "lufthansa";
 			Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
-			aux = iberia.cargarIda(ciudadOrigen, ciudadDestino, fecha);
+			vueloToken = iberia.cargarIda(ciudadOrigen, ciudadDestino, fecha);
 			
-			for(clsVuelo v: aux)
+			for(String vuelo: vueloToken)
 			{
-				retorno.add(v);
+				retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
 			}
 			
 			Puerto = "1092";
@@ -52,11 +58,11 @@ public class clsGateway implements itfGateway
 			Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameAmericanAirlines =  "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosAmericanAirlines AmericanAirlines = (itfCargaVuelosAmericanAirlines)registryLufthansa.lookup(nameAmericanAirlines);
-			aux = AmericanAirlines.cargarIda(ciudadOrigen, ciudadDestino, fecha);
-			for(clsVuelo v: aux)
+			vueloToken = AmericanAirlines.cargarIda(ciudadOrigen, ciudadDestino, fecha);
+			
+			for(String vuelo: vueloToken)
 			{
-				clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
-				retorno.add(vueloaux);
+				retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
 			}
 			
 		} catch (NumberFormatException e)
@@ -75,10 +81,10 @@ public class clsGateway implements itfGateway
 		return retorno;	
 	}
 	
-	public ArrayList <clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, String fechaIda,String fechaVuelta)
+	public ArrayList<clsVuelo> cargarIdaVuelta(String ciudadOrigen, String ciudadDestino, String fechaIda,String fechaVuelta)
 	{
-		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
-		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
+		ArrayList<String> vueloToken = new ArrayList<String>();
+		ArrayList<clsVuelo> retorno = new ArrayList<clsVuelo>();
 		//Cargamos los vuelos de cada aerolínea
 		String args[] = null;
 				try {
@@ -87,18 +93,23 @@ public class clsGateway implements itfGateway
 					Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 					String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 					itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
-					retorno = iberia.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
+					vueloToken = iberia.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
+					
+					for(String vuelo: vueloToken)
+					{
+						retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
+					}
 					
 					Puerto = "1091";
 					Service = "Lufthansa";
 					Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 					String nameLufthansa = "//" + IP + ":" +Puerto + "/" + Service;
 					itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
-					aux = iberia.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
+					vueloToken = iberia.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
 					
-					for(clsVuelo v: aux)
+					for(String vuelo: vueloToken)
 					{
-						retorno.add(v);
+						retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
 					}
 					
 					Puerto = "1092";
@@ -106,12 +117,13 @@ public class clsGateway implements itfGateway
 					Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 					String nameAmericanAirlines = "//" + IP + ":" +Puerto + "/" + Service;
 					itfCargaVuelosAmericanAirlines AmericanAirlines = (itfCargaVuelosAmericanAirlines)registryLufthansa.lookup(nameAmericanAirlines);
-					aux = AmericanAirlines.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
-					for(clsVuelo v: aux)
+					vueloToken = AmericanAirlines.cargarIdaVuelta(ciudadOrigen, ciudadDestino, fechaIda,fechaVuelta);
+					
+					for(String vuelo: vueloToken)
 					{
-						clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
-						retorno.add(vueloaux);
+						retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
 					}
+					
 				} catch (NumberFormatException e)
 				{
 					// TODO Auto-generated catch block
@@ -127,10 +139,10 @@ public class clsGateway implements itfGateway
 		return retorno;	
 	}
 	
-	public ArrayList <clsVuelo> cargarCualquierMomento(String ciudadOrigen, String ciudadDestino)
+	public ArrayList<clsVuelo> cargarCualquierMomento(String ciudadOrigen, String ciudadDestino)
 	{
-		ArrayList <clsVuelo> aux = new ArrayList<clsVuelo>();
-		ArrayList <clsVuelo> retorno = new ArrayList<clsVuelo>();
+		ArrayList<String> vueloToken = new ArrayList<String>();
+		ArrayList<clsVuelo> retorno = new ArrayList<clsVuelo>();
 		//Cargamos los vuelos de cada aerolínea
 		try {
 			Puerto = "1090";
@@ -138,19 +150,23 @@ public class clsGateway implements itfGateway
 			Registry registryIberia = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameIberia = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
-			retorno = iberia.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
+			vueloToken = iberia.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
+			
+			for(String vuelo: vueloToken)
+			{
+				retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
+			}
 			
 			Puerto = "1091";
 			Service = "lufthansa";
 			Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameLufthansa ="//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
-			aux = iberia.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
+			vueloToken = iberia.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
 			
-			for(clsVuelo v: aux)
+			for(String vuelo: vueloToken)
 			{
-				clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
-				retorno.add(vueloaux);
+				retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
 			}
 			
 			Puerto = "1092";
@@ -158,11 +174,11 @@ public class clsGateway implements itfGateway
 			Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 			String nameAmericanAirlines = "//" + IP + ":" +Puerto + "/" + Service;
 			itfCargaVuelosAmericanAirlines AmericanAirlines = (itfCargaVuelosAmericanAirlines)registryLufthansa.lookup(nameAmericanAirlines);
-			aux = AmericanAirlines.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
-			for(clsVuelo v: aux)
+			vueloToken = AmericanAirlines.cargarCualquierMomento(ciudadOrigen, ciudadDestino);
+			
+			for(String vuelo: vueloToken)
 			{
-				clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
-				retorno.add(vueloaux);
+				retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
 			}
 			
 		} catch (NumberFormatException e)
@@ -277,10 +293,11 @@ public class clsGateway implements itfGateway
 	}
 
 	@Override
-	public ArrayList<clsVuelo> cargarTodos() {
+	public ArrayList<clsVuelo> cargarTodos()
+	{
+		ArrayList<String> vueloToken = new ArrayList<String>();
+		ArrayList<clsVuelo> retorno = new ArrayList<clsVuelo>();
 		
-		ArrayList<clsVuelo> retorno = new ArrayList <clsVuelo>();
-		ArrayList<clsVuelo> aux = new ArrayList <clsVuelo>();
 		Puerto = "1090";
 		Service = "iberia";
 		Registry registryIberia;
@@ -289,18 +306,23 @@ public class clsGateway implements itfGateway
 		
 		String nameIberia = "//" + IP + ":" + Puerto + "/" + Service;
 		itfCargaVuelosIberia iberia = (itfCargaVuelosIberia)registryIberia.lookup(nameIberia);
-		retorno = iberia.cargarTodos();
+		vueloToken = iberia.cargarTodos();
+		
+		for(String vuelo: vueloToken)
+		{
+			retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
+		}
 		
 		Puerto = "1091";
 		Service = "lufthansa";
 		Registry registryLufthansa = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 		String nameLufthansa = "//" + IP + ":" + Puerto + "/" + Service;
 		itfCargaVuelosLufthansa Lufthansa = (itfCargaVuelosLufthansa)registryLufthansa.lookup(nameLufthansa);
-		aux = iberia.cargarTodos();
+		vueloToken = iberia.cargarTodos();
 		
-		for(clsVuelo v: aux)
+		for(String vuelo: vueloToken)
 		{
-			retorno.add(v);
+			retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
 		}
 		
 		Puerto = "1092";
@@ -308,12 +330,13 @@ public class clsGateway implements itfGateway
 		Registry registryAmericanAirlines = LocateRegistry.getRegistry(((Integer.valueOf(Puerto))));
 		String nameAmericanAirlines =  "//" + IP + ":" +Puerto + "/" + Service;
 		itfCargaVuelosAmericanAirlines AmericanAirlines = (itfCargaVuelosAmericanAirlines)registryLufthansa.lookup(nameAmericanAirlines);
-		aux = AmericanAirlines.cargarTodos();
-		for(clsVuelo v: aux)
+		vueloToken = AmericanAirlines.cargarTodos();
+		
+		for(String vuelo: vueloToken)
 		{
-			clsVuelo vueloaux = new clsVuelo(v.getAsientos(), v.getAsientosOcupados(), v.getCodVuelo(), v.getAeropuertoOrigen(), v.getAeropuertoDestino(),v.getFecha(), v.getPrecio(),null);
-			retorno.add(vueloaux);
+			retorno.add(clsAssemblerVuelo.assembleToVuelo(vuelo));
 		}
+		
 		} catch (NumberFormatException | RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -321,6 +344,7 @@ public class clsGateway implements itfGateway
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return retorno;
 	}
 }
