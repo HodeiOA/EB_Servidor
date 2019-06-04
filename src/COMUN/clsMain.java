@@ -39,12 +39,8 @@ public class clsMain
 		{
 			objServer = new Facade();
 			ArrayList <clsVuelo> vuelos = new ArrayList<clsVuelo>();
-					//(ArrayList<clsVuelo>) objServer.LeerTodosVuelosAPI();
+			vuelos = (ArrayList<clsVuelo>) objServer.LeerTodosVuelosAPI();
 			clsAssemblerVuelo.todosVuelos = vuelos;
-			
-			ArrayList <clsUsuario> usuarios = new ArrayList <clsUsuario>();
-			//Leer todos los usuarios de la api
-			clsAssemblerUsuario.todosUsuarios = usuarios;
 			
 			ArrayList <clsAeropuerto> aeropuertos = new ArrayList <clsAeropuerto>();
 			for(clsVuelo v: vuelos)

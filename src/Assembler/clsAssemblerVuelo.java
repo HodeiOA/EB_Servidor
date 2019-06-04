@@ -77,9 +77,10 @@ public class clsAssemblerVuelo
 		vuelo.setPrecio(Double.parseDouble(datosVuelo[4]));
 		
 		ArrayList<Integer> asientos = new ArrayList<Integer>();
-		for (int i = 5; i < datosVuelo.length; i++) 
+		int aux = Integer.parseInt(datosVuelo[5]);
+		for (int i = 0; i < aux+1; i++) 
 		{
-			asientos.add(Integer.parseInt(datosVuelo[i]));
+			asientos.add(i);
 		}
 		vuelo.setAsientos(asientos);
 		
